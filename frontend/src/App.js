@@ -1,10 +1,26 @@
+
+import React from 'react';
 import './App.css';
+import Header from './components/common/header/Header';
+import Footer from './components/common/footer/Footer';
+import Home from './components/common/Home/Home';
+import ScrollToTopButton from './ScrollToTopButton';
+import ScrollingLine from './ScrollingLine';
+
 
 function App() {
+
   return (
-  <div>
-    <h3 className='text-center text-primary'>hello chandan how a reyou</h3>
-  </div>
+    <div>
+      <Header/>
+      <ScrollToTopButton/>
+  
+
+      <Home/>
+      <Footer /> 
+      <ScrollingLine />
+
+    </div>
   );
 }
 

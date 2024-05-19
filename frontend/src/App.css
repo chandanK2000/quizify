@@ -1,38 +1,34 @@
-.App {
-  text-align: center;
+.scroll-progress-bar {
+  position: fixed;
+  bottom: 75px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #f0f0f0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.scroll-progress {
+  height: 100%;
+  background-color: #3d25c7;
+  transition: width 0.2s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (max-width: 768px) {
+  .scroll-progress-bar {
+    display: none;
   }
+}/* Webkit browsers like Chrome, Safari and Edge */
+::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+  border-radius: 20px; /* Optional: adds a border-radius to the scrollbar track */
 }
 
-.App-link {
-  color: #61dafb;
-}
+::-webkit-scrollbar-thumb {
+  background: #0065bb; /* Color of the scrollbar thumb */
+  border-radius: 20px; /* Optional: adds a border-radius to the scrollbar thumb */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
