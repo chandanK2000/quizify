@@ -16,13 +16,14 @@
   width: 40px !important;
   height: 40px !important;
   border-radius: 50%;
+    transition:all 0.5s ease-in;
+
 }
 .custom-btn {
   color: white !important;
   border: none !important;
   border-radius: 50px !important;
   width: auto;
-
   transition:all 0.5s ease-in;
 }
 .custom-btn:hover{
