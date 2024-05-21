@@ -1,0 +1,63 @@
+.skeleton-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height of viewport */
+  background-color: #f1e1e1; /* Background color for the skeleton */
+}
+
+.skeleton {
+  display: flex;
+  width: 80%; /* Adjust the width as needed */
+  max-width: 1200px; /* Limit the maximum width */
+}
+
+.skeleton-circle {
+  width: 100px; /* Adjust the width as needed */
+  height: 100px; /* Adjust the height as needed */
+  background-color: #636060; /* Circle color */
+  border-radius: 50%; /* Make it a circle */
+  margin: 10px;
+  animation: pulse 1.5s infinite alternate;
+}
+
+.skeleton-triangle {
+  width: 100px; /* Adjust the width as needed */
+  height: 100px; /* Adjust the height as needed */
+  background-color: #8a8787; /* Triangle color */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* Create a triangle */
+  margin: 10px;
+  animation: pulse 1.5s infinite alternate-reverse;
+}
+
+.skeleton-square {
+  width: 100px; /* Adjust the width as needed */
+  height: 100px; /* Adjust the height as needed */
+  background-color: #e5a2a2; /* Square color */
+  margin: 10px;
+  animation: pulse 1.5s infinite alternate;
+}
+
+.small {
+  width: 50px;
+  height: 50px;
+}
+
+.medium {
+  width: 150px;
+  height: 150px;
+}
+
+.large {
+  width: 200px;
+  height: 200px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

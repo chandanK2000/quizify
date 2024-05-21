@@ -17,18 +17,24 @@
   .scroll-progress-bar {
     display: none;
   }
-}/* Webkit browsers like Chrome, Safari and Edge */
+}
+
 ::-webkit-scrollbar {
-  width: 6px; /* Width of the scrollbar */
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Background of the scrollbar track */
-  border-radius: 20px; /* Optional: adds a border-radius to the scrollbar track */
+  background: #f1f1f1;
+  border-radius: 20px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #0065bb; /* Color of the scrollbar thumb */
-  border-radius: 20px; /* Optional: adds a border-radius to the scrollbar thumb */
-
+  background: #0065bb;
+  border-radius: 20px;
+}
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

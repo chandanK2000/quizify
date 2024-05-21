@@ -1,7 +1,7 @@
 .navbar {
   background-color: #007bff;
-
 }
+
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
@@ -17,6 +17,20 @@
   height: 40px !important;
   border-radius: 50%;
 }
+.custom-btn {
+  color: white !important;
+  border: none !important;
+  border-radius: 50px !important;
+  width: auto;
+
+  transition:all 0.5s ease-in;
+}
+.custom-btn:hover{
+ background-color: #555; 
+   box-shadow: 0px 1px 6px rgba(226, 205, 205, 0.4);
+
+}
+
 
 .rightIcons .nav-item:hover {
   color: black;
@@ -33,6 +47,7 @@
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
+
 .dropdown-menu.mega-menu .row {
   padding: 1rem;
 }
@@ -40,7 +55,6 @@
 .dropdown-menu.mega-menu h6 {
   font-size: 1.2rem;
   font-weight: 500;
-  /* margin-bottom: 0.5rem; */
   border-bottom: 2px solid #d9e6fa;
   padding-bottom: 20px;
   color: #007bff;
@@ -48,7 +62,6 @@
 
 .dropdown-menu.mega-menu .list-unstyled li {
   margin-bottom: 0.5rem;
-
 }
 
 .dropdown-menu.mega-menu .list-unstyled li a {
@@ -57,21 +70,20 @@
   font-weight: 400;
   padding: 0px;
 }
+
 .custom-hr {
-  width: 20%; /* Adjust width as needed */
-  margin: 0 auto; /* Center the <hr> */
+  width: 20%;
+  margin: 0 auto;
   border: none;
   color: #007bff;
-  border-top: 3px dashed  #007bff; /* Adjust thickness and color as needed */
+  border-top: 3px dashed #007bff;
 }
 
 .dropdown-menu.mega-menu .list-unstyled li a:hover {
   color: #007bff;
   background-color: white;
 }
-.dropdown-menu.mega-menu {
-  display: none;
-}
+
 .navbar-toggler {
   box-shadow: none !important;
   border: none !important;
@@ -84,6 +96,7 @@
   border-radius: 45px;
   padding: 4px 20px;
 }
+
 /* Show the mega menu when the parent dropdown item is hovered */
 .nav-item.dropdown:hover .dropdown-menu.mega-menu {
   display: block;
@@ -92,8 +105,9 @@
 .navbar-nav.me-auto {
   order: -1;
 }
+
 .language-dropdown .dropdown-toggle::after {
-  display: none; 
+  display: none;
 }
 
 .language-dropdown .dropdown-menu {
@@ -149,6 +163,7 @@
     margin-bottom: 1rem;
   }
 }
+
 @media (max-width: 768px) {
   .navbar-nav.ms-auto {
     display: flex;

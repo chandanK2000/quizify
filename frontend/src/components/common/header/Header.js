@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
-import { FaAdjust, FaLanguage, FaExpand, FaUser,FaBell } from 'react-icons/fa';
+import { FaAdjust, FaLanguage, FaExpand, FaBell, FaSignInAlt, FaUserPlus, FaCog } from 'react-icons/fa';
 import './Header.css';
-const Header = () => {
+import { Link } from 'react-router-dom';
+import { courses, onlineCourses, freeResources } from '../../../courseData';
+import LoginRegisterModal from '../../../LoginRegisterModal';
 
-  const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
+const Header = () => {
+  const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
+  const [isLoginMode, setIsLoginMode] = useState(true);
+
+  const toggleModal = () => {
+    setShowLoginRegisterModal(!showLoginRegisterModal);
+  };
+
+  const toggleMode = () => {
+    setIsLoginMode(!isLoginMode);
+  };
 
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
@@ -15,16 +27,20 @@ const Header = () => {
     }
   };
 
-  const toggleLanguageDropdown = () => {
-    setLanguageDropdownOpen(!languageDropdownOpen);
-  };
+  const iconData = [
+    { icon: <FaBell />, link: '#' },
+    { icon: <FaAdjust />, link: '#' },
+    { icon: <FaCog />, link: '#' },
+    { icon: <FaLanguage />, link: '#' },
+    { icon: <FaExpand onClick={toggleFullScreen} />, link: '#' }
+  ];
+
   return (
-    <header className="navbar navbar-expand-lg ">
+    <header className="navbar navbar-expand-lg">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          {/* <img src="./logo3.jfif" height="40px" width="30px" alt="logo"/> */}
+        <Link className="navbar-brand" to="/">
           Quizpp
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -36,277 +52,160 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-  
+
         <div className="collapse navbar-collapse" id="navbarNav">
-       
           <ul className="navbar-nav rightIcons ms-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                <FaBell /> 
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                <FaAdjust /> {/* Dark/Light Mode Toggle */}
-              </a>
-            </li>
-            <li className="nav-item dropdown language-dropdown">
-              <button
-                className="nav-link dropdown-toggle"
-                onClick={toggleLanguageDropdown}
-              >
-                <FaLanguage /> {/* Language Change */}
+            {iconData.map((item, index) => (
+              <li className="nav-item" key={index}>
+                <a className="nav-link" href={item.link}>
+                  {item.icon}
+                </a>
+              </li>
+            ))}
+            <li className="custom-btn">
+              <button className="nav-link btn custom-btn" onClick={() => {
+                toggleModal();
+                toggleMode();
+              }}>
+                {/* {isLoginMode ? 'Login' : 'Register'} */}
+                {isLoginMode ? <><FaUserPlus /> Register</> : <>< FaSignInAlt /> Login</>}
+                
               </button>
-              <ul className={`dropdown-menu ${languageDropdownOpen ? 'show' : ''}`} onClick={() => setLanguageDropdownOpen(false)}>
-                <li><a className="dropdown-item" href="#">English</a></li>
-                <li><a className="dropdown-item" href="#">Hindi</a></li>
-                <li><a className="dropdown-item" href="#">Urdu</a></li>
-                <li><a className="dropdown-item" href="#">Bengali</a></li>
-                <li><a className="dropdown-item" href="#">Tamil</a></li>
-                <li><a className="dropdown-item" href="#">Telugu</a></li>
-                <li><a className="dropdown-item" href="#">Gujarati</a></li>
-                <li><a className="dropdown-item" href="#">Marathi</a></li>
-                <li><a className="dropdown-item" href="#">Kannada</a></li>
-                <li><a className="dropdown-item" href="#">Malayalam</a></li>
-                <li><a className="dropdown-item" href="#">Punjabi</a></li>
-              </ul>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                <FaExpand onClick={toggleFullScreen} /> {/* Full Width */}
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                <FaUser /> {/* Profile */}
-              </a>
             </li>
           </ul>
           <ul className="navbar-nav me-auto">
             <li className="nav-item dropdown position-static">
-              <a className="nav-link dropdown-toggle" href="#" id="offlineCoursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Offline Courses 
-              </a>
+              <Link
+                className="nav-link dropdown-toggle"
+                to="#"
+                id="offlineCoursesDropdown"
+                role="button"
+                aria-expanded="false"
+              >
+                Offline Courses
+              </Link>
               <div className="dropdown-menu mega-menu p-4" aria-labelledby="offlineCoursesDropdown">
                 <div className="row">
-                  <div className="col-md-4">
-                    <h6>CMS & Web Technologies</h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">Full Stack Web  Course</a></li>
-                      <li><a className="dropdown-item" href="#">Wordpress Course</a></li>
-                    </ul>
-                  </div>
-                  <div className="col-md-4">
-                    <h6>Programming </h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">Python Course</a></li>
-                      <li><a className="dropdown-item" href="#">Java Course</a></li>
-                      <li><a className="dropdown-item" href="#">C Programming</a></li>
-                      <li><a className="dropdown-item" href="#">C++ Programming</a></li>
-                    </ul>
-                  </div>
-                  <div className="col-md-4">
-                    <h6>Digital Marketing </h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">SEO Course 7</a></li>
-                      <li><a className="dropdown-item" href="#">Digital Marketing </a></li>
-                    </ul>
-                  </div>
-                  <div className="col-md-4">
-                    <h6>Professional Training </h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">Data Analayatic </a></li>
-                      <li><a className="dropdown-item" href="#">Graphic Designing </a></li>
-                    </ul>
-                  </div>
-                  <div className="col-md-4">
-                    <h6>Cyber Security </h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">Ethical Hacking </a></li>
-                      <li><a className="dropdown-item" href="#">Penetration Testimg </a></li>
-=                    </ul>
-                  </div>
-                  <div className="col-md-4">
-                    <h6>App Development </h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">Android App  Course</a></li>
-                      <li><a className="dropdown-item" href="#">Flutter App  Course</a></li>
-                    </ul>
-                  </div>
+                  {courses.map((category, index) => (
+                    <div className="col-md-4" key={index}>
+                      <h6>{category.category}</h6>
+                      <ul className="list-unstyled">
+                        {category.courses.map((course, idx) => (
+                          course.link.startsWith('/') ? (
+                            <li key={idx}>
+                              <Link className="dropdown-item" to={course.link}>
+                                {course.name}
+                              </Link>
+                            </li>
+                          ) : (
+                            <li key={idx}>
+                              <a className="dropdown-item" href={course.link}>
+                                {course.name}
+                              </a>
+                            </li>
+                          )
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-                <hr className='custom-hr' />
+                <hr className="custom-hr" />
               </div>
             </li>
             <li className="nav-item dropdown position-static">
-              <a className="nav-link dropdown-toggle" href="#" id="onlineCoursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <Link
+                className="nav-link dropdown-toggle"
+                to="#"
+                id="onlineCoursesDropdown"
+                role="button"
+                aria-expanded="false"
+              >
                 Online Courses
-              </a>
+              </Link>
               <div className="dropdown-menu mega-menu p-4" aria-labelledby="onlineCoursesDropdown">
                 <div className="row">
-                  <div className="col-md-4">
-                    <h6>Web Development</h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">Full Stack Web </a></li>
-                      <li><a className="dropdown-item" href="#">WordPress Course</a></li>
-                    </ul>
-                  </div>
-                  <div className="col-md-4">
-                    <h6>App Development</h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">Android App Development </a></li>
-                      <li><a className="dropdown-item" href="#">Flutter App Development </a></li>
-                    </ul>
-                  </div>
-                  <div className="col-md-4">
-                    <h6>Digital Marketing</h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">SEO Course</a></li>
-                      <li><a className="dropdown-item" href="#">Digital Marketing Course</a></li>
-                      <li><a className="dropdown-item" href="#">Full Online Ads Course</a></li>
-                    </ul>
-                  </div>
-                  <div className="col-md-4">
-                    <h6>Professional Training</h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">Data Science</a></li>
-                      <li><a className="dropdown-item" href="#">Data Analayatics</a></li>
-                      <li><a className="dropdown-item" href="#">Python Course</a></li>
-                      <li><a className="dropdown-item" href="#">Graphic Designing course</a></li>
-                    </ul>
-                  </div>   
-                  <div className="col-md-4">
-                    <h6>Cyber Security</h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">Ethical Hacking </a></li>
-                      <li><a className="dropdown-item" href="#">Penetration Testing</a></li>
-                    </ul>
-                  </div>
-                  <div className="col-md-4">
-                    <h6>Cyber Security</h6>
-                    <ul className="list-unstyled">
-                      <li><a className="dropdown-item" href="#">Ethical Hacking </a></li>
-                      <li><a className="dropdown-item" href="#">Penetration Testing</a></li>
-                    </ul>
-                  </div>
+                  {onlineCourses.map((category, index) => (
+                    <div className="col-md-4" key={index}>
+                      <h6>{category.category}</h6>
+                      <ul className="list-unstyled">
+                        {category.courses.map((course, idx) => (
+                          course.link.startsWith('/') ? (
+                            <li key={idx}>
+                              <Link className="dropdown-item" to={course.link}>
+                                {course.name}
+                              </Link>
+                            </li>
+                          ) : (
+                            <li key={idx}>
+                              <a className="dropdown-item" href={course.link}>
+                                {course.name}
+                              </a>
+                            </li>
+                          )
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-                <hr className='custom-hr'/>
+                <hr className="custom-hr" />
               </div>
-             
             </li>
             <li className="nav-item dropdown position-static">
-              <a className="nav-link dropdown-toggle" href="#" id="freeResourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Free Resource
-              </a>
+              <Link
+                className="nav-link dropdown-toggle"
+                to="#"
+                id="freeResourcesDropdown"
+                role="button"
+                aria-expanded="false"
+              >
+                Free Resources
+              </Link>
               <div className="dropdown-menu mega-menu p-4" aria-labelledby="freeResourcesDropdown">
                 <div className="row">
-                  <div className="col-md-6">
-                    <h6>Interview Questions</h6>
-                    <div className='row'>
-                      <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
-                      </div>
-                      <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
-                      </div>
-                      <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
-                      </div>
-                      <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
-                      </div>  <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
-                      </div>
-                      <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
+                  {freeResources.map((resource, index) => (
+                    <div className="col-md-6" key={index}>
+                      <h6>{resource.category}</h6>
+                      <div className="row">
+                        {resource.subcategories.map((subcategory, subIndex) => (
+                          <div className="col-md-4" key={subIndex}>
+                            <ul className="list-unstyled">
+                              {subcategory.map((item, itemIndex) => (
+                                <li key={itemIndex}>
+                                  <a className="dropdown-item" href={item.link}>
+                                    {item.name}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                 
-                  </div>
-                  <div className="col-md-6">
-                    <h6>Free Quizzes</h6>
-                    <div className='row'>
-                      <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
-                      </div>
-                      <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
-                      </div>
-                      <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
-                      </div>
-                      <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
-                      </div>  <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
-                      </div>
-                      <div className='col-md-4'>
-                        <ul className="list-unstyled">
-                          <li><a className="dropdown-item" href="#">HTML</a></li>
-                          <li><a className="dropdown-item" href="#">CSS</a></li>
-                          <li><a className="dropdown-item" href="#">JavaScript</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-                <hr className='custom-hr'/>
+                <hr className="custom-hr" />
               </div>
-
             </li>
-           <li>
+            <li>
               <form className="form-inline m-2 my-lg-0 header">
-                <input className="form-control mr-sm-2" type="search" placeholder="Search here ....🔍" aria-label="Search"/>
-                 
+                <input
+                  className="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search here ....🔍"
+                  aria-label="Search"
+                />
               </form>
-           </li>
+            </li>
           </ul>
-         
         </div>
       </div>
+      {/* Render Login/Register Modal */}
+      <LoginRegisterModal
+        showModal={showLoginRegisterModal}
+        handleToggleModal={toggleModal}
+        isLoginMode={isLoginMode}
+        toggleMode={toggleMode} // Pass toggleMode function
+      />
     </header>
   );
 };
