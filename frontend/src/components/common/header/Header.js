@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaAdjust, FaLanguage, FaExpand, FaBell, FaSignInAlt, FaUserPlus, FaCog } from 'react-icons/fa';
 import './Header.css';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,8 @@ import LoginRegisterModal from '../../../LoginRegisterModal';
 const Header = () => {
   const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
   const [isLoginMode, setIsLoginMode] = useState(true);
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const languageDropdownRef = useRef(null);
 
   const toggleModal = () => {
     setShowLoginRegisterModal(!showLoginRegisterModal);
@@ -27,16 +29,54 @@ const Header = () => {
     }
   };
 
+  const toggleLanguageDropdown = () => {
+    setShowLanguageDropdown(!showLanguageDropdown);
+  };
+
+  const handleLanguageSelect = () => {
+    setShowLanguageDropdown(false);
+  };
+
+  const languageOptions = ['English', 'Spanish', 'French', 'German'];
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (languageDropdownRef.current && !languageDropdownRef.current.contains(event.target)) {
+        setShowLanguageDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const iconData = [
     { icon: <FaBell />, link: '#' },
     { icon: <FaAdjust />, link: '#' },
     { icon: <FaCog />, link: '#' },
-    { icon: <FaLanguage />, link: '#' },
+    {
+      icon: <FaLanguage onClick={toggleLanguageDropdown} />,
+      link: '#',
+      dropdown: (
+        showLanguageDropdown && (
+          <ul className="dropdown-menu show language-dropdown" ref={languageDropdownRef}>
+            {languageOptions.map((language, index) => (
+              <li key={index} className="dropdown-item" onClick={handleLanguageSelect}>
+                {language}
+              </li>
+            ))}
+          </ul>
+        )
+      )
+    },
     { icon: <FaExpand onClick={toggleFullScreen} />, link: '#' }
   ];
 
   return (
-    <header className="navbar navbar-expand-lg">
+    <header className="navbar navbar-expand-lg  py-3">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           Quizpp
@@ -56,10 +96,11 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav rightIcons ms-auto">
             {iconData.map((item, index) => (
-              <li className="nav-item" key={index}>
+              <li className="nav-item" key={index} style={{ position: 'relative' }}>
                 <a className="nav-link" href={item.link}>
                   {item.icon}
                 </a>
+                {item.dropdown}
               </li>
             ))}
             <li className="custom-btn">
@@ -67,9 +108,7 @@ const Header = () => {
                 toggleModal();
                 toggleMode();
               }}>
-                {/* {isLoginMode ? 'Login' : 'Register'} */}
                 {isLoginMode ? <><FaUserPlus /> Register</> : <>< FaSignInAlt /> Login</>}
-                
               </button>
             </li>
           </ul>
@@ -199,12 +238,11 @@ const Header = () => {
           </ul>
         </div>
       </div>
-      {/* Render Login/Register Modal */}
       <LoginRegisterModal
         showModal={showLoginRegisterModal}
         handleToggleModal={toggleModal}
         isLoginMode={isLoginMode}
-        toggleMode={toggleMode} // Pass toggleMode function
+        toggleMode={toggleMode}
       />
     </header>
   );
