@@ -108,6 +108,7 @@ const LoginRegisterModal = ({ showModal, handleToggleModal, isLoginMode, toggleM
                 Resend OTP
               </Button>
             </>
+           
           )}
           {!isLoginMode && (
             <>

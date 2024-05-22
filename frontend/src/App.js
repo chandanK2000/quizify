@@ -8,6 +8,7 @@ import ScrollingLine from './ScrollingLine';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import About from './About';
 import Skeleton from './Skeleton';
+
 function App() {
   const [loading, setLoading] = useState(true);
 

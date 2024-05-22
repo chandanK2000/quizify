@@ -115,7 +115,7 @@ const Header = () => {
           <ul className="navbar-nav me-auto">
             <li className="nav-item dropdown position-static">
               <Link
-                className="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle courseHeading"
                 to="#"
                 id="offlineCoursesDropdown"
                 role="button"
@@ -153,7 +153,7 @@ const Header = () => {
             </li>
             <li className="nav-item dropdown position-static">
               <Link
-                className="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle courseHeading"
                 to="#"
                 id="onlineCoursesDropdown"
                 role="button"
@@ -191,7 +191,7 @@ const Header = () => {
             </li>
             <li className="nav-item dropdown position-static">
               <Link
-                className="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle courseHeading"
                 to="#"
                 id="freeResourcesDropdown"
                 role="button"

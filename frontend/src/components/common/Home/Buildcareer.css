@@ -1,0 +1,71 @@
+/* Buildcareer.css */
+.build-career-container {
+  text-align: center;
+  padding: 30px 60px;
+  background-color: #fcf8f8;
+  opacity: 0.9;
+}
+
+.build-career-header {
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.build-career-content {
+  font-size: 18px;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+.blocks-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.block {
+  width: calc(33.33% - 20px);
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.block-image {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+
+
+.block-heading {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.block-content {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .block {
+    width: calc(50% - 20px);
+  }
+  .build-career-container {
+  text-align: center;
+  padding: 30px 20px;
+}
+}
+
+@media screen and (max-width: 576px) {
+  .block {
+    width: calc(100% - 20px);
+    .build-career-container {
+  text-align: center;
+  padding: 30px 20px;
+}
+  }
+}
