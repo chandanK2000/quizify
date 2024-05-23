@@ -1,6 +1,4 @@
-/* Buildcareer.css */
 .build-career-container {
-  text-align: center;
   padding: 30px 60px;
   background-color: #fcf8f8;
   opacity: 0.9;
@@ -10,12 +8,36 @@
   font-size: 34px;
   font-weight: bold;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .build-career-content {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 40px;
-  font-weight: 500;
+  font-weight: 400;
+  text-align: center;
+}
+
+.getstarted{
+  margin-right: 10px;
+  padding: 8px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #007bff;
+  outline: none;
+  background-color: #007bff;
+  border-radius: 4px;
+  opacity: 0.9;
+  color: white;
+  font-weight: 400;
+  transition: all 0.5s ease-in;
+}
+.getstarted:hover {
+  background-color: white;
+  color: #131414;
+  border: 1px solid #007bff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Example box shadow */
+
 }
 
 .blocks-container {
@@ -47,7 +69,10 @@
 
 .block-content {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: thin;
+  text-align: left;
 }
 
 @media screen and (max-width: 768px) {

@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.our-courses-container {
+  padding: 50px 40px;
+  background: linear-gradient(223.23deg, #fff -39.74%, #44cce0 94.44%);
+}
+
+.our-courses-header {
+  margin: 0 0 10px 0;
+  font-size: 34px;
+  font-weight: bold;
+  color: #0e3f6c;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.button-container button {
+  margin: 10px 8px;
+  padding: 3px 6px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+  width: 50px;
+  height: 50px;
+  font-weight: bold;
+  font-size: 18px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease-in;
+}
+
+.button-container button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in;
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+/* .course-card:hover {
+    box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+    border-radius: 8px;
+
+} */
+
+.course-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  transition: all 0.5s ease-in;
+}
+
+.course-info {
+  text-align: left;
+}
+
+.course-heading {
+  display: inline-block; 
+  font-size: 15px;
+  font-weight: 500;
+  color: #0e3f6c;
+  margin: 0 0 10px 0;
+  background-color: #c1f1fa;
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.course-name{
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+
+.course-timing, .trained-students {
+  font-size: 16px;
+  margin: 0 0 5px 0;
+}
+.course-details {
+  padding: 0;
+  margin: 0;
+}
+
+.course-details li {
+  font-size: 14px;
+  color: #333;
+  margin: 5px 0;
+}
+/* Media query for small devices */
+@media (max-width: 576px) {
+  .button-container {
+    display: none;
+  }
+
+  .our-courses-header {
+    font-size: 15px;
+  }
+}
+
+/* Add padding to the slides to create space between them */
+.slick-slide {
+  padding: 0 15px;
+}

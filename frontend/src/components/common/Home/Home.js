@@ -2,6 +2,9 @@ import React from 'react'
 import Fueling from './Fueling';
 import OurLearners from './OurLearners';
 import Buildcareer from './Buildcareer';
+import OurOnlineCourses from './OurOnlinecourses';
+import Founder from './Founder';
+import OurHappyLearners from './OurHappyLearners';
 
 const Home = () => {
   return (
@@ -9,6 +12,9 @@ const Home = () => {
     <Fueling/>
     <OurLearners/>
       <Buildcareer/>
+      <OurOnlineCourses/>
+      <Founder />
+      <OurHappyLearners />
    </div>
   )
 }

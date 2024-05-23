@@ -1,0 +1,19 @@
+.our-happy-learners {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #010a13;
+}
+
+.happy-learners-heading {
+  font-size: 38px;
+  font-weight: bold;
+  color: #e8ebee;
+  margin-bottom: 20px;
+}
+
+.happy-learners-subheading {
+  font-size: 24px;
+  color: #f8f1f1;
+  margin: 0 auto 40px;
+  width: 100%;
+}

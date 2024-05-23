@@ -1,14 +1,165 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .our-learners-container {
-  text-align: center;
-  padding: 100px 20px;
-  background-color: #f1eded;
-  
+  padding: 50px 40px;
+  background: linear-gradient(223.23deg, #fff -39.74%, #dbf5f9 94.44%);
+}
+
+.prevnext {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .our-learners-header {
-  font-size: 24px;
+  margin: 0 0 20px 0;
+  font-size: 30px;
   font-weight: bold;
-  margin-bottom: 20px;
-  color: #333; /* Adjust color as needed */
+  color: #0e3f6c;
+  text-align: center;
 }
+/* 
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.button-container button {
+  margin: 0 8px;
+  border: none;
+  outline: none;
+  padding: 3px 6px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: #0e3f6c;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease-in;
+  opacity: 0.9;
+}
+
+
+.button-container button:hover {
+  background-color: #007bff;
+  color: white;
+} */
+
+.maincardSection {
+  display: flex;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 200px;
+  padding: 10px;
+}
+
+.company-image {
+  height: 140px;
+  width: 160px;
+  margin-bottom: 10px;
+}
+
+/* Media query for small devices */
+@media (max-width: 576px) {
+  .button-container {
+    display: none;
+  }
+  .our-learners-header {
+  font-size: 16px;
+  font-weight: normal;
+ 
+}
+}
+/* 
+import React, { useRef } from 'react';
+import './OurLearners.css';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+const OurLearners = () => {
+  const companyList = [
+    { profile: './cognizant.svg' },
+    { profile: './capgemini.svg' },
+    { profile: './zoho.svg' },
+    { profile: './hcl.svg' },
+    { profile: './infosys.svg' },
+    { profile: './mmt.svg' },
+    { profile: './tcs.svg' },
+    { profile: './wipro.svg' },
+    { profile: './techmahindra.svg' },
+    { profile: './thrillophilia.svg' },
+  ];
+
+  const sliderRef = useRef(null);
+
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5.2,
+    autoplay: true,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3.2,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+          swipeToSlide: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          swipeToSlide: true,
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1.05,
+          swipeToSlide: true,
+        },
+      },
+    ],
+  };
+
+  return (
+    <section className='our-learners-container'>
+      <h2 className='our-learners-header'>Our Learners Work at Global Companies & Startups</h2>
+       <div className='button-container'>
+        <button className="prev-button" onClick={() => sliderRef.current.slickPrev()}>&lt;</button>
+        <button className="next-button" onClick={() => sliderRef.current.slickNext()}>&gt;</button>
+      </div> 
+      <Slider ref={sliderRef} {...settings}>
+        {companyList.map((company, index) => (
+          <div className='maincardSection' key={index}>
+            <div className='cards'>
+              <img src={company.profile} alt="Company logo" className='company-image' />
+            </div>
+          </div>
+        ))}
+      </Slider>
+    </section>
+  );
+};
+
+export default OurLearners; */
