@@ -1,7 +1,7 @@
 .our-happy-learners {
-  padding: 50px 20px;
+  padding: 50px 80px;
   text-align: center;
-  background-color: #010a13;
+  background-color: #03274b;
 }
 
 .happy-learners-heading {
@@ -16,4 +16,93 @@
   color: #f8f1f1;
   margin: 0 auto 40px;
   width: 100%;
+}
+
+.feedback-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 40px;
+
+}
+
+.feedback-block {
+  background: #0c1d2e;
+  padding: 20px;
+  border-radius: 10px;
+  width: calc(53.33% - 20px);
+  box-sizing: border-box;
+  color: #e8ebee;
+  text-align: left;
+  position: relative; 
+  min-height: 300px !important;
+  cursor: pointer;
+
+}
+
+.feedback-text {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.candidate-info {
+  display: flex;
+  align-items: center;
+}
+
+.candidate-image {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.candidate-name {
+  font-size: 16px;
+}
+
+
+.video-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.video-content {
+  position: relative;
+  z-index: 10;}
+
+
+
+  /* Media query for small devices */
+@media (max-width: 576px) {
+  .our-happy-learners {
+  padding: 30px 40px;
+
+}
+
+.happy-learners-heading {
+  font-size: 20px;
+ 
+}
+
+.happy-learners-subheading {
+  font-size: 14px;
+ 
+}
+
 }
