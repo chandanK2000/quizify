@@ -19,14 +19,17 @@ body {
   align-items: center;
 }
 
-.founder-image {
+.founder-left .founder-image {
   width: 80%;
   height: auto;
   border-radius: 50%;
+  transition: all 0.5s ease-in;
 }
 
-.founder-image:hover {
+.founder-left .founder-image:hover {
   cursor: pointer;
+  transform: scale(1.01) !important;
+  filter: grayscale(100%);
 }
 
 

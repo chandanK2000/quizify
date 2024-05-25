@@ -1,24 +1,20 @@
 import React from 'react';
 import { FaRocket } from 'react-icons/fa';
-import './Fueling.css'; 
+import './Fueling.css';
 
-const Fueling = () => {
-
-  const Democlass=()=>{
-    alert("we have to explore this also");
-  }
+const Fueling = ({ openDemoForm }) => {
   return (
     <div className="fueling-container">
       {/* Left Section */}
       <div className="left-section">
-        <h6> Success-oriented learning! icon <FaRocket className="icon" /></h6> 
-        <h1>Fueling Skills, Igniting<br/> Careers</h1>
+        <h6> Success-oriented learning! <FaRocket className="icon" /></h6>
+        <h1>Fueling Skills, Igniting<br /> Careers</h1>
         <p>
           Master industry-relevant skills with our vernacular online courses. Choose your program, get certified, and open doors to lucrative career opportunities.
         </p>
         <div className="buttons">
-          <button className='explores'>Explore Courses</button>
-          <button className='democlass' onClick={Democlass}>Book Demo Class</button>
+          <button className="explores">Explore Courses</button>
+          <button className="democlass" onClick={openDemoForm}>Book Demo Class</button>
         </div>
       </div>
 
@@ -28,6 +24,6 @@ const Fueling = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Fueling;

@@ -1,7 +1,8 @@
 .learner-numbers {
   text-align: center;
   padding: 40px 30px;
-  background-color: rgb(194, 187, 187);
+  background-color: rgb(231, 221, 221);
+  color: black;
 }
 
 .learner-numbers h1 {

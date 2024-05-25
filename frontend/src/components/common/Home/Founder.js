@@ -5,7 +5,7 @@ const Founder = () => {
   return (
     <section className="founder-container">
       <div className="founder-left">
-        <img src="./chandan.jfif" alt="Founder" className="founder-image" />
+        <img src="./siyaramsir.jpg" alt="Founder" className="founder-image" />
       </div>
       <div className="founder-right">
         <h1 className="founder-heading">" Infocampus: Bharat ka Career Launchpad "</h1>
