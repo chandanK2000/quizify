@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Buildcareer.css";
-import { FaArrowRight } from 'react-icons/fa'; // Import the arrow icon component
+import { FaArrowRight } from 'react-icons/fa'; 
 
 const BuildCareer = () => {
   return (

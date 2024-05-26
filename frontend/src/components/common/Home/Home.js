@@ -10,6 +10,8 @@ import InfocampusTrainingCenter from './InfocampusTrainingCenter';
 import DemoForm from './DemoForm';
 import Placements from './Placements';
 import Infocourses from './Infocourses';
+import AllCourses from './AllCourses';
+import Interviewquestions from './Interviewquestions';
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,11 +31,13 @@ const Home = () => {
       <Buildcareer />
       <OurOnlineCourses />
       <LearnerNumbers />
+      <Interviewquestions />
       <Founder />
       <OurHappyLearners />
       <InfocampusTrainingCenter />
       <Placements />
       <Infocourses />
+      <AllCourses />
       {isModalOpen && <DemoForm handleClose={closeModal} />}
     </div>
   );

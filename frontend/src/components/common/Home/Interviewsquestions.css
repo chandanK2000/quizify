@@ -1,0 +1,71 @@
+.interview-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px;
+}
+
+.interview-left {
+  flex: 0 0 calc(50% - 20px);
+  padding-right: 20px;
+}
+
+.interview-right {
+  flex: 0 0 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.interview-block {
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #0056b3;
+}
+
+.interview-block h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.interview-block p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.interview-block button {
+  background-color: #0056b3;
+  color: #fff;
+  border: none !important;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  outline: none !important;
+}
+
+.interview-block button:hover {
+  background-color: #3691f3;
+}
+
+.interview-right img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  cursor: pointer;
+}
+@media (max-width: 576px) {
+  .interview-left {
+    flex: 0 0 100%;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .interview-right {
+    flex: 0 0 100%;
+  }
+}

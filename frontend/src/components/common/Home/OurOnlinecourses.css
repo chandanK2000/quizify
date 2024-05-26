@@ -57,12 +57,6 @@ body {
   cursor: pointer;
 }
 
-/* .course-card:hover {
-    box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.7);
-  cursor: pointer;
-    border-radius: 8px;
-
-} */
 
 .course-image {
   width: 100%;
@@ -94,6 +88,11 @@ body {
   color: black;
 }
 
+.our-courses-container ul{
+ list-style-type: square;
+ color: rgb(43, 42, 42);
+}
+
 .course-timing, .trained-students {
   font-size: 16px;
   margin: 0 0 5px 0;
@@ -108,7 +107,7 @@ body {
   color: #333;
   margin: 5px 0;
 }
-/* Media query for small devices */
+
 @media (max-width: 576px) {
   .button-container {
     display: none;

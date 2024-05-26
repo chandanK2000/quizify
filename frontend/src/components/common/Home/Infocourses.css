@@ -8,7 +8,7 @@
 
 .infocourse-block {
   width: calc(25% - 20px);
-  margin-top: 10px;
+  margin: 10px;
   padding-right: 10px;
 }
 
@@ -20,61 +20,103 @@
 .infocourse-text h3 {
   margin-bottom: 10px;
   font-size: 18px;
+  color: gray;
 }
 
+.infocourse-block h3 {
+  color: rgb(109, 106, 106);
+  text-shadow: 2px 1px 2px rgba(0, 0, 0, 0.5); 
+}
 .infocourse-text p {
   margin-bottom: 15px;
   color: #666;
   font-size: 18px;
+  text-align: justify !important;
 }
 
 .infocourse-block ul {
   list-style: none;
   padding: 0;
+  text-decoration: none;
 }
 
-.infocourse-block ul li {
+.infocourse-block ul li a {
   margin-bottom: 5px;
   color: #666;
-  text-decoration: none !important;
-  font-weight: 500;
-  font-size: 18px;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 17px;
+}
+.infocourse-block ul li a:hover {
+  color: #2688eb;
 }
 
 .subscribe-form {
   display: flex;
   align-items: center;
+  margin-top: 15px;
 }
 
-.subscribe-form input {
-  flex: 1;
-  margin-right: 10px;
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.subscribe-form .form-control {
+  width: 100%;
+  padding-right: 40px;
   padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #ced4da;
+  border-radius:30px !important;
 }
 
-.subscribe-form button {
-  background-color: #007bff;
-  color: #fff;
+.subscribe-form .icon-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: none;
   border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
+  padding: 0 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  color: black;
+  display: flex;
+  border-radius:30px;
+  align-items: center;
+  background-color: #2688eb;
 }
 
-.subscribe-form button:hover {
-  background-color: #0056b3;
+.icon-button:hover {
+  color: #e0a72a;
+}
+
+@media (max-width: 768px) {
+  .infocourse-block {
+    width: calc(50% - 20px);
+    margin: 10px;
+  }
 }
 
 @media (max-width: 576px) {
   .infocourse-block {
     width: 100%;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
-    padding: 20px 10px;
+    border-bottom: 1px solid gray;
+    margin-top: 2px;
+    padding: 10px 4px;
+  }
+  .subscribe-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .input-with-icon .form-control {
+    padding-right: 40px;
+  }
+  .icon-button {
+    padding: 0 10px;
+  }
+
+  .infocourse-text h3 {
+    margin-bottom: 10px;
+    font-size: 14px;
   }
 }
