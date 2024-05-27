@@ -4,7 +4,7 @@ import './LearnerNumber.css';
 const LearnerNumbers = () => {
   return (
     <div className="learner-numbers">
-      <h1>WsCube Tech in Numbers</h1>
+      <h1>Infocampus Learners in Numbers</h1>
       <h2>Our learner community's unwavering trust and confidence continue to propel our success story forward.</h2>
       <div className="number-blocks">
         <div className="number-block">
