@@ -1,0 +1,96 @@
+# POST /api/users/register
+POST http://localhost:4000/api/users/register
+Content-Type: application/json
+
+{
+  "name": "amawar",
+  "email": "sdfghj@gmail.com",
+  "password": "anawar",
+  "confirmPassword": "anawar",
+  "mobile": "1234567890"
+}
+
+
+//this api is for all the users
+###
+GET http://localhost:4000/api/users
+
+
+//Delete user 
+# DELETE /api/users/:id
+###
+DELETE http://localhost:4000/api/users/6654a79fdba2dbb56a05469a
+
+###
+# POST /api/users/login
+POST http://localhost:4000/api/users/login
+Content-Type: application/json
+
+{
+  "email": "siyaramray@gmail.com",
+  "password": "siyaram123"
+}
+
+
+//update the user details
+
+# PUT /api/users/:id
+###
+PUT http://localhost:4000/api/users/6654ad098e6d0be2dcae4d00
+Content-Type: application/json
+
+{
+  "name": "amit yadav",
+  "email": "amit@example.com",
+  "password": "newpassword",
+  "mobile": "987654321r",
+  "profileImage": "/uploads/newprofile.jpg",
+  "address": "punjab",
+  "bio": "he is a good boy"
+}
+
+
+
+//admin register 
+
+# POST /api/admin/register
+###
+POST http://localhost:4000/api/admin/register
+Content-Type: application/json
+
+{
+  "name": "amit",
+  "email": "mohan@gmail.com",
+  "password": "adminPassword",
+  "mobile": "1234567890"
+}
+
+
+//get all admins
+###
+GET http://localhost:4000/api/admin
+
+//delete user authority
+
+# DELETE /api/admin/admin/:id
+###
+DELETE http://localhost:4000/api/admin/users/6654ce72a11c10cc02011024
+
+
+
+//update admin details
+
+# PUT /api/users/:id
+###
+PUT http://localhost:4000/api/admin/admins/6654d082e0fd4248f6d98b1e
+Content-Type: application/json
+
+{
+  "name": "amitabh",
+  "email": "amitabh@example.com",
+  "password": "newpassword",
+  "mobile": "9876543214",
+  "profileImage": "/uploads/newprofile.jpg",
+  "address": "punjab",
+  "bio": "Amitabh bachan is a very great actor of India.thay give 100+ films"
+}
