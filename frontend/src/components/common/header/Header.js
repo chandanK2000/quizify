@@ -1,23 +1,43 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaAdjust, FaLanguage, FaExpand, FaBell, FaSignInAlt, FaUserPlus, FaCog } from 'react-icons/fa';
+import { FaAdjust, FaLanguage, FaExpand, FaBell, FaSignInAlt, FaUserPlus, FaCog, FaSignOutAlt } from 'react-icons/fa';
 import './Header.css';
+import { Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { courses, onlineCourses, freeResources } from '../../../courseData';
-import LoginRegisterModal from '../../../LoginRegisterModal';
-
+import Loginform from '../../../Loginform';
+import Registerform from "../../../Registerform"
+// import Sidebar from './Sidebar';
 const Header = () => {
-  const [showLoginRegisterModal, setShowLoginRegisterModal] = useState(false);
-  const [isLoginMode, setIsLoginMode] = useState(true);
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const languageDropdownRef = useRef(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
-  const toggleModal = () => {
-    setShowLoginRegisterModal(!showLoginRegisterModal);
+  const [userData, setUserData] = useState(null);
+  // const [showSidebar, setShowSidebar] = useState(false);
+
+
+  // const toggleSidebar = () => {
+  //   setShowSidebar(!showSidebar);
+  // };
+  const toggleLoginModal = () => {
+    setShowLoginModal(!showLoginModal);
+    setShowRegisterModal(false);
+   
   };
 
-  const toggleMode = () => {
-    setIsLoginMode(!isLoginMode);
+
+  const toggleRegisterModal = () => {
+    setShowRegisterModal(!showRegisterModal);
+    setShowLoginModal(false);
   };
+
+  const handleSuccessfulRegistration = () => {
+    setShowRegisterModal(false);
+    setShowLoginModal(true);
+  };
+
+ 
 
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
@@ -53,10 +73,37 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Get user data from localStorage
+    const storedUserData = localStorage.getItem('userData');
+    console.log(storedUserData);
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
+  }, []);
+  const handleLogout = () => {
+    const confirmed = window.confirm('Are you sure you want to log out ?');
+
+    if (confirmed) {
+      localStorage.removeItem('userData');
+      setUserData(null);
+      window.location.reload();
+    }
+  };
+
   const iconData = [
     { icon: <FaBell />, link: '#' },
     { icon: <FaAdjust />, link: '#' },
-    { icon: <FaCog />, link: '#' },
+    {
+      icon: <FaCog />,
+      link: '#',
+      // dropdown: (
+      //   <ul className="dropdown-menu show" aria-labelledby="profileDropdown">
+      //     <li><a className="dropdown-item" href="#">Profile Settings</a></li>
+      //     <li><a className="dropdown-item" href="#">Logout</a></li>
+      //   </ul>
+      // )
+    },
     {
       icon: <FaLanguage onClick={toggleLanguageDropdown} />,
       link: '#',
@@ -76,7 +123,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="navbar navbar-expand-lg  py-3">
+    <header className="navbar navbar-expand-lg py-3">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           Quizpp
@@ -103,13 +150,16 @@ const Header = () => {
                 {item.dropdown}
               </li>
             ))}
-            <li className="custom-btn">
-              <button className="nav-link btn custom-btn" onClick={() => {
-                toggleModal();
-                toggleMode();
-              }}>
-                {isLoginMode ? <><FaUserPlus /> Register</> : <>< FaSignInAlt /> Login</>}
-              </button>
+            <li><button className='btn btn-primary mx-2' onClick={toggleRegisterModal}>Register</button></li>
+            <li>
+              {userData ? (
+                <>
+                  <button className='btn btn-primary' onClick={handleLogout}><FaSignOutAlt/> <span>{userData.name}</span></button>
+                
+                </>
+              ) : (
+                <button className='btn btn-primary' onClick={toggleLoginModal}>Login</button>
+              )}
             </li>
           </ul>
           <ul className="navbar-nav me-auto">
@@ -238,14 +288,40 @@ const Header = () => {
           </ul>
         </div>
       </div>
-      <LoginRegisterModal
-        showModal={showLoginRegisterModal}
-        handleToggleModal={toggleModal}
-        isLoginMode={isLoginMode}
-        toggleMode={toggleMode}
-      />
+      {/* Register modal */}
+      <Modal show={showRegisterModal} onHide={toggleRegisterModal}>
+        <Modal.Header closeButton>
+          <Modal.Title><FaUserPlus /> Register</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Registerform onSuccessfulRegistration={handleSuccessfulRegistration} />
+          <div className="mt-2 text-center">
+            <span>Already have an account? </span>
+            <button className="btn btn-link p-0" onClick={toggleLoginModal}>
+              Login
+            </button>
+          </div>
+        </Modal.Body>
+      </Modal>
+
+      {/* Login modal */}
+      <Modal show={showLoginModal} onHide={toggleLoginModal}>
+        <Modal.Header closeButton>
+          <Modal.Title><FaSignInAlt /> Login</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Loginform />
+          <div className="mt-2 text-center">
+            <span>Don't have an account? </span>
+            <button className="btn btn-link p-0" onClick={toggleRegisterModal}>
+              Register
+            </button>
+          </div>
+        </Modal.Body>
+      </Modal>
     </header>
   );
 };
 
 export default Header;
+

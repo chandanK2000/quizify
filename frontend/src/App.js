@@ -8,7 +8,8 @@ import ScrollingLine from './ScrollingLine';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import About from './About';
 import Skeleton from './Skeleton';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -36,6 +37,7 @@ function App() {
       <ScrollToTopButton />
       <Footer />
       <ScrollingLine />
+      <ToastContainer/>
     </HashRouter>
   );
 }
