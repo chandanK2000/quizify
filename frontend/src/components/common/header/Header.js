@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { courses, onlineCourses, freeResources } from '../../../courseData';
 import Loginform from '../../../Loginform';
 import Registerform from "../../../Registerform"
-// import Sidebar from './Sidebar';
 const Header = () => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const languageDropdownRef = useRef(null);
@@ -14,12 +13,8 @@ const Header = () => {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   const [userData, setUserData] = useState(null);
-  // const [showSidebar, setShowSidebar] = useState(false);
 
 
-  // const toggleSidebar = () => {
-  //   setShowSidebar(!showSidebar);
-  // };
   const toggleLoginModal = () => {
     setShowLoginModal(!showLoginModal);
     setShowRegisterModal(false);
@@ -81,6 +76,8 @@ const Header = () => {
       setUserData(JSON.parse(storedUserData));
     }
   }, []);
+
+
   const handleLogout = () => {
     const confirmed = window.confirm('Are you sure you want to log out ?');
 
@@ -89,21 +86,16 @@ const Header = () => {
       setUserData(null);
       window.location.reload();
     }
+    
   };
 
+ 
   const iconData = [
     { icon: <FaBell />, link: '#' },
     { icon: <FaAdjust />, link: '#' },
     {
       icon: <FaCog />,
-      link: '#',
-      // dropdown: (
-      //   <ul className="dropdown-menu show" aria-labelledby="profileDropdown">
-      //     <li><a className="dropdown-item" href="#">Profile Settings</a></li>
-      //     <li><a className="dropdown-item" href="#">Logout</a></li>
-      //   </ul>
-      // )
-    },
+      link: '#' },
     {
       icon: <FaLanguage onClick={toggleLanguageDropdown} />,
       link: '#',
@@ -260,9 +252,9 @@ const Header = () => {
                             <ul className="list-unstyled">
                               {subcategory.map((item, itemIndex) => (
                                 <li key={itemIndex}>
-                                  <a className="dropdown-item" href={item.link}>
+                                  <Link className="dropdown-item" to={`/quiz/${item.subject}`}>
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 </li>
                               ))}
                             </ul>

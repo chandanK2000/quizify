@@ -32,6 +32,9 @@ mongoose.connect(DB, {
 
 // User routes
 const userRoutes = require('./routes/user');
+const questionRoutes = require('./routes/questionRoutes');
+app.use('/api/questions', questionRoutes);
+
 app.use('/api/users', userRoutes);
 
 const adminRoutes = require('./routes/adminRoutes.js');

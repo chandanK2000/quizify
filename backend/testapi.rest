@@ -82,6 +82,7 @@ DELETE http://localhost:4000/api/admin/users/6654ce72a11c10cc02011024
 
 # PUT /api/users/:id
 ###
+
 PUT http://localhost:4000/api/admin/admins/6654d082e0fd4248f6d98b1e
 Content-Type: application/json
 
@@ -94,3 +95,24 @@ Content-Type: application/json
   "address": "punjab",
   "bio": "Amitabh bachan is a very great actor of India.thay give 100+ films"
 }
+
+
+// for the quesiton 
+###
+POST http://localhost:4000/api/questions
+Content-Type: application/json
+
+{
+  "text": "Why need css?",
+  "options": ["for desinging", "kdfklsdf ", "slkfjskdf","ksjfhksj hfkjsdhf"],
+  "correctAnswer": 0,
+  "topic": "css",
+  "set": 1
+}
+
+###
+GET http://localhost:4000/api/questions?subject=css&set=1
+
+
+###
+DELETE http://localhost:4000/api/questions/66586d14d73b2c14c6e35cdb

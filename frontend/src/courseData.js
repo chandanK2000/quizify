@@ -5,7 +5,7 @@ export const courses = [
     courses: [
       { name: "Full Stack Web Course", link: "#" },
       { name: "Wordpress Course", link: "#" },
-      { name: "Wordpress Course", link: "/about" } // Note the different link
+      { name: "about", link: "/about" } 
     ]
   },
   {
@@ -89,74 +89,50 @@ export const onlineCourses = [
 ];
 
 export const freeResources = [
-  {
-    category: "Interview Questions",
-    subcategories: [
-      [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
-      ],
-      [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
-      ],
-      [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
-      ],
-      [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
-      ],
-      [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
-      ],
-      [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
-      ]
-    ]
-  },
+  // {
+  //   category: "Interview Questions",
+  //   subcategories: [
+  //     [
+  //       { name: "HTML", link: "#" },
+  //       { name: "CSS", link: "#" },
+  //       { name: "JavaScript", link: "#" }
+  //     ],
+  //     [
+  //       { name: "HTML", link: "#" },
+  //       { name: "CSS", link: "#" },
+  //       { name: "JavaScript", link: "#" }
+  //     ],
+  //     [
+  //       { name: "HTML", link: "#" },
+  //       { name: "CSS", link: "#" },
+  //       { name: "JavaScript", link: "#" }
+  //     ],
+  //     [
+  //       { name: "HTML", link: "#" },
+  //       { name: "CSS", link: "#" },
+  //       { name: "JavaScript", link: "#" }
+  //     ],
+  //     [
+  //       { name: "HTML", link: "#" },
+  //       { name: "CSS", link: "#" },
+  //       { name: "JavaScript", link: "#" }
+  //     ],
+  //     [
+  //       { name: "HTML", link: "#" },
+  //       { name: "CSS", link: "#" },
+  //       { name: "JavaScript", link: "#" }
+  //     ]
+  //   ]
+  // },
   {
     category: "Free Quizzes",
     subcategories: [
       [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
-      ],
-      [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
-      ],
-      [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
-      ],
-      [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
-      ],
-      [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
-      ],
-      [
-        { name: "HTML", link: "#" },
-        { name: "CSS", link: "#" },
-        { name: "JavaScript", link: "#" }
+        { name: "HTML Quiz", link: "/quiz/html" },
+        { name: "CSS Quiz", link: "/quiz/css" },
+        { name: "JavaScript Quiz", link: "/quiz/javascript" }
       ]
+      // Add more subcategories if needed
     ]
   }
 ];

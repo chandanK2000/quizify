@@ -101,9 +101,8 @@ const Loginform = ({ onRegisterLinkClick }) => {
           setOtpSent(false);
         }
         return toast.success(`${userData.name} Log in successfully`);
-      
-
-
+    
+       
       } else {
         const data = await response.json();
         
