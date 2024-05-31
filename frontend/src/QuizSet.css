@@ -7,6 +7,8 @@
   margin-bottom: 20px;
   color: #202122; 
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3); 
+    font-style: italic;
+
 }
 
 .back-btn {

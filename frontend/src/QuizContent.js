@@ -1,6 +1,7 @@
 import React from 'react';
 import './QuizContents.css';
 import { FaChevronLeft, FaChevronRight, FaCheck } from 'react-icons/fa';
+import Stepper from 'react-stepper-horizontal';
 
 const QuizContent = ({
   questions,
@@ -13,6 +14,11 @@ const QuizContent = ({
 }) => {
   const currentQuestion = questions[currentQuestionIndex];
   const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
+
+  // Creating steps for the Stepper component
+  const steps = questions.map((_, index) => ({
+    title: `Question ${index + 1}`,
+  }));
 
   return (
     <div className='quizcontent-container'>
@@ -65,22 +71,20 @@ const QuizContent = ({
           >
             <FaChevronRight /> Next
           </button>
-
         </div>
-
       </div>
       <div className="quiz-progress">
-        {questions.map((_, index) => (
-          <div
-            key={index}
-            className={`step ${index <= currentQuestionIndex ? 'completed' : ''}`}
-          >
-            <span>Question {index + 1}</span>
-          </div>
-        ))}
+        <Stepper
+          steps={steps}
+          activeStep={currentQuestionIndex}
+          activeColor="#007bff"
+          completeColor="#28a745"
+          circleFontColor="#fff"
+          direction="horizontal"
+
+        />
       </div>
     </div>
-   
   );
 };
 

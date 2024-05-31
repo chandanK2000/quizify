@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import quizData from './questions.json';
-import './Quiz.css'
+import './Quiz.css';
 import QuizContent from './QuizContent';
 import QuizResult from './QuizResult';
-import {FaPlay } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa';
 
 const Quiz = ({ subjectName, quizSet }) => {
   const [questions, setQuestions] = useState([]);
@@ -15,7 +15,6 @@ const Quiz = ({ subjectName, quizSet }) => {
   const [agreeChecked, setAgreeChecked] = useState(false);
 
   useEffect(() => {
-    // Load quiz data based on subjectName and quizSet
     const quizSetData = quizData[subjectName][`set${quizSet}`];
     setQuestions(quizSetData);
   }, [subjectName, quizSet]);
@@ -32,14 +31,10 @@ const Quiz = ({ subjectName, quizSet }) => {
   };
 
   const handleNextQuestion = () => {
-    const currentQuestion = questions[currentQuestionIndex];
-
-    // Save selected option to the current question
     const updatedQuestions = [...questions];
     updatedQuestions[currentQuestionIndex].selectedOption = selectedOption;
     setQuestions(updatedQuestions);
 
-    // Move to the next question
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedOption(questions[currentQuestionIndex + 1].selectedOption || '');
@@ -49,8 +44,11 @@ const Quiz = ({ subjectName, quizSet }) => {
   const handleSubmit = () => {
     const confirmed = window.confirm("Are you sure you want to submit the quiz?");
     if (confirmed) {
-      // Calculate the final score
-      const finalScore = questions.reduce((acc, question) => {
+      const updatedQuestions = [...questions];
+      updatedQuestions[currentQuestionIndex].selectedOption = selectedOption;
+      setQuestions(updatedQuestions);
+
+      const finalScore = updatedQuestions.reduce((acc, question) => {
         if (question.selectedOption === question.answer) {
           return acc + 1;
         }
@@ -62,10 +60,16 @@ const Quiz = ({ subjectName, quizSet }) => {
   };
 
   const restartQuiz = () => {
+    const resetQuestions = questions.map((question) => ({
+      ...question,
+      selectedOption: '',
+    }));
+    setQuestions(resetQuestions);
     setCurrentQuestionIndex(0);
     setSelectedOption('');
     setScore(0);
     setQuizCompleted(false);
+    setQuizStarted(true); // Ensure the quiz stays in started state
   };
 
   const startQuiz = () => {
@@ -81,7 +85,7 @@ const Quiz = ({ subjectName, quizSet }) => {
   };
 
   return (
-    <div >
+    <div>
       {!quizStarted && (
         <div className="quizcontainers">
           <div className="instructions">
@@ -122,6 +126,7 @@ const Quiz = ({ subjectName, quizSet }) => {
         <QuizResult
           score={score}
           totalQuestions={questions.length}
+          questions={questions}
           restartQuiz={restartQuiz}
         />
       )}

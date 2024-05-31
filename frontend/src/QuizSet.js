@@ -36,8 +36,8 @@ const QuizSet = () => {
               <button className="set-btn">Set {set}</button>
             </Link>
             <div className="button-group">
-              <Link to={`/play-quiz/${subjectName}/set/${set}`}>
-                <button className="custom-btn"><RiPlayFill /> Play Again</button>
+              <Link to={`/free-quizzes/${subjectName}/set/${set}`}>
+                <button className="custom-btn"><RiPlayFill />Play Again </button>
               </Link>
               <Link to={`/quiz-history/${subjectName}/set/${set}`}>
                 <button className="custom-btn"><RiHistoryLine /> View History</button>

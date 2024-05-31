@@ -1,20 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaAdjust, FaLanguage, FaExpand, FaBell, FaSignInAlt, FaUserPlus, FaCog, FaSignOutAlt } from 'react-icons/fa';
+import { FaAdjust, FaLanguage, FaExpand, FaBell, FaSignInAlt, FaUserPlus, FaCog, FaSignOutAlt,  } from 'react-icons/fa';
+import { FiEdit } from 'react-icons/fi'; 
+
 import './Header.css';
 import { Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { courses, onlineCourses, freeResources } from '../../../courseData';
 import Loginform from '../../../Loginform';
 import Registerform from "../../../Registerform"
+import EditProfileForm from '../../../EditProfileForm';
 const Header = () => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const languageDropdownRef = useRef(null);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
-
+  const [profileData, setProfileData] = useState({}); // New state to hold profile data
+  const [showEditProfileModal, setShowEditProfileModal] = useState(false); 
   const [userData, setUserData] = useState(null);
 
-
+  // Function to toggle the Edit Profile modal
+  const toggleEditProfileModal = () => {
+    setShowEditProfileModal(!showEditProfileModal);
+  };
+  // Function to handle profile updates
+  const handleProfileUpdate = (updatedProfileData) => {
+    // Implement logic to update user's profile data
+    setProfileData(updatedProfileData);
+    // Close the modal
+    setShowEditProfileModal(false);
+  };
   const toggleLoginModal = () => {
     setShowLoginModal(!showLoginModal);
     setShowRegisterModal(false);
@@ -94,8 +108,9 @@ const Header = () => {
     { icon: <FaBell />, link: '#' },
     { icon: <FaAdjust />, link: '#' },
     {
-      icon: <FaCog />,
-      link: '#' },
+      icon: <FaCog onClick={toggleEditProfileModal} />, // Updated icon with onClick event
+      link: '#',
+    },
     {
       icon: <FaLanguage onClick={toggleLanguageDropdown} />,
       link: '#',
@@ -291,7 +306,7 @@ const Header = () => {
       {/* Register modal */}
       <Modal show={showRegisterModal} onHide={toggleRegisterModal}>
         <Modal.Header closeButton>
-          <Modal.Title><FaUserPlus /> Register</Modal.Title>
+          <Modal.Title className='text-info'><FaUserPlus /> Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Registerform onSuccessfulRegistration={handleSuccessfulRegistration} />
@@ -307,7 +322,7 @@ const Header = () => {
       {/* Login modal */}
       <Modal show={showLoginModal} onHide={toggleLoginModal}>
         <Modal.Header closeButton>
-          <Modal.Title><FaSignInAlt /> Login</Modal.Title>
+          <Modal.Title className='text-warning'><FaSignInAlt/> Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Loginform />
@@ -317,6 +332,17 @@ const Header = () => {
               Register
             </button>
           </div>
+        </Modal.Body>
+      </Modal>
+
+      {/* Edit Profile modal */}
+      <Modal show={showEditProfileModal} onHide={toggleEditProfileModal}>
+        <Modal.Header closeButton>
+          <Modal.Title className='text-warning'><FiEdit />  Edit Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          
+           <EditProfileForm profileData={profileData} onUpdate={handleProfileUpdate} /> 
         </Modal.Body>
       </Modal>
     </header>
