@@ -89,50 +89,15 @@ export const onlineCourses = [
 ];
 
 export const freeResources = [
-  // {
-  //   category: "Interview Questions",
-  //   subcategories: [
-  //     [
-  //       { name: "HTML", link: "#" },
-  //       { name: "CSS", link: "#" },
-  //       { name: "JavaScript", link: "#" }
-  //     ],
-  //     [
-  //       { name: "HTML", link: "#" },
-  //       { name: "CSS", link: "#" },
-  //       { name: "JavaScript", link: "#" }
-  //     ],
-  //     [
-  //       { name: "HTML", link: "#" },
-  //       { name: "CSS", link: "#" },
-  //       { name: "JavaScript", link: "#" }
-  //     ],
-  //     [
-  //       { name: "HTML", link: "#" },
-  //       { name: "CSS", link: "#" },
-  //       { name: "JavaScript", link: "#" }
-  //     ],
-  //     [
-  //       { name: "HTML", link: "#" },
-  //       { name: "CSS", link: "#" },
-  //       { name: "JavaScript", link: "#" }
-  //     ],
-  //     [
-  //       { name: "HTML", link: "#" },
-  //       { name: "CSS", link: "#" },
-  //       { name: "JavaScript", link: "#" }
-  //     ]
-  //   ]
-  // },
   {
     category: "Free Quizzes",
     subcategories: [
       [
-        { name: "HTML Quiz", link: "/quiz/html" },
-        { name: "CSS Quiz", link: "/quiz/css" },
-        { name: "JavaScript Quiz", link: "/quiz/javascript" }
+        { name: "HTML Quiz", link: "/free-quizzes/html" },
+        { name: "CSS Quiz", link: "/free-quizzes/css" },
+        { name: "JavaScript Quiz", link: "/free-quizzes/javascript" },
+        { name: "Reactjs Quiz", link: "/free-quizzes/react" }
       ]
-      // Add more subcategories if needed
     ]
   }
 ];

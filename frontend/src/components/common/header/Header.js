@@ -248,14 +248,22 @@ const Header = () => {
                       <h6>{resource.category}</h6>
                       <div className="row">
                         {resource.subcategories.map((subcategory, subIndex) => (
-                          <div className="col-md-4" key={subIndex}>
+                          <div className="col-md-6" key={subIndex}>
                             <ul className="list-unstyled">
                               {subcategory.map((item, itemIndex) => (
-                                <li key={itemIndex}>
-                                  <Link className="dropdown-item" to={`/quiz/${item.subject}`}>
-                                    {item.name}
-                                  </Link>
-                                </li>
+                                item.link.startsWith('/') ? (
+                                  <li key={itemIndex}>
+                                    <Link className="dropdown-item" to={item.link}>
+                                      {item.name}
+                                    </Link>
+                                  </li>
+                                ) : (
+                                  <li key={itemIndex}>
+                                    <a className="dropdown-item" href={item.link}>
+                                      {item.name}
+                                    </a>
+                                  </li>
+                                )
                               ))}
                             </ul>
                           </div>

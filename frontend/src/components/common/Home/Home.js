@@ -12,8 +12,7 @@ import Placements from './Placements';
 import Infocourses from './Infocourses';
 import AllCourses from './AllCourses';
 import Interviewquestions from './Interviewquestions';
-import QuizApp from '../../../QuizApp';
-// import RegisterForm from './RegisterForm';
+
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,8 +39,7 @@ const Home = () => {
       <Placements />
       <Infocourses />
       <AllCourses />
-      <QuizApp />
-      {/* <RegisterForm /> */}
+ 
       {isModalOpen && <DemoForm handleClose={closeModal} />}
     </div>
   );
