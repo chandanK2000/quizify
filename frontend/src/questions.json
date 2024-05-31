@@ -6,6 +6,7 @@
         "options": [
           "Hyper Text Markup Language",
           "Hyperlinks and Text Markup Language",
+          "Home Tool Markup Language",
           "Home Tool Markup Language"
         ],
         "answer": "Hyper Text Markup Language"
@@ -38,11 +39,7 @@
       },
       {
         "question": "What is the correct HTML for creating a checkbox?",
-        "options": [
-          "<input type='checkbox'>",
-          "<check>",
-          "<input type='check'>"
-        ],
+        "options": ["<input type='checkbox'>", "<check>", "<input type='check'>"],
         "answer": "<input type='checkbox'>"
       }
     ],
@@ -98,31 +95,19 @@
       },
       {
         "question": "What is the correct CSS syntax for making all the <p> elements bold?",
-        "options": [
-          "p {font-weight: bold;}",
-          "<p style='font-weight: bold;'>",
-          "p {text-style: bold;}"
-        ],
+        "options": ["p {font-weight: bold;}", "<p style='font-weight: bold;'>", "p {text-style: bold;}"],
         "answer": "p {font-weight: bold;}"
       },
       {
         "question": "How do you add a background color for all <h1> elements?",
-        "options": [
-          "h1 {background-color: yellow;}",
-          "h1 {color: yellow;}",
-          "h1 {bg-color: yellow;}"
-        ],
+        "options": ["h1 {background-color: yellow;}", "h1 {color: yellow;}", "h1 {bg-color: yellow;}"],
         "answer": "h1 {background-color: yellow;}"
       }
     ],
     "set3": [
       {
         "question": "How do you make a list that lists its items with squares in CSS?",
-        "options": [
-          "list-type: square;",
-          "list-style-type: square;",
-          "type: square;"
-        ],
+        "options": ["list-type: square;", "list-style-type: square;", "type: square;"],
         "answer": "list-style-type: square;"
       },
       {
@@ -132,11 +117,7 @@
       },
       {
         "question": "How do you make each word in a text start with a capital letter?",
-        "options": [
-          "text-transform: capitalize;",
-          "text-style: capitalize;",
-          "text-effect: capitalize;"
-        ],
+        "options": ["text-transform: capitalize;", "text-style: capitalize;", "text-effect: capitalize;"],
         "answer": "text-transform: capitalize;"
       }
     ]
@@ -176,11 +157,7 @@
       },
       {
         "question": "How do you write 'Hello World' in an alert box?",
-        "options": [
-          "msgBox('Hello World');",
-          "alertBox('Hello World');",
-          "alert('Hello World');"
-        ],
+        "options": ["msgBox('Hello World');", "alertBox('Hello World');", "alert('Hello World');"],
         "answer": "alert('Hello World');"
       }
     ],
@@ -192,95 +169,100 @@
       },
       {
         "question": "How do you create a function in JavaScript?",
-        "options": [
-          "function: myFunction()",
-          "function myFunction()",
-          "function = myFunction()"
-        ],
+        "options": ["function: myFunction()", "function myFunction()", "function = myFunction()"],
         "answer": "function myFunction()"
       }
     ]
   },
-  "react": {
-    "set1": [
-      {
-        "question": "What is ReactJS?",
-        "options": [
-          "A JavaScript framework",
-          "A Python library",
-          "A CSS preprocessor"
-        ],
-        "answer": "A JavaScript framework"
-      },
-      {
-        "question": "What is the main advantage of using ReactJS?",
-        "options": [
-          "Easier debugging",
-          "Faster rendering",
-          "Built-in testing tools"
-        ],
-        "answer": "Faster rendering"
-      },
-      {
-        "question": "Which virtual DOM concept does ReactJS utilize for efficient updates?",
-        "options": ["Shadow DOM", "Light DOM", "Fiber"],
-        "answer": "Fiber"
-      }
-    ],
-    "set2": [
-      {
-        "question": "How do you render a React component within another component?",
-        "options": [
-          "Using ReactDOM.render()",
-          "Using document.createElement()",
-          "Using <Component /> syntax"
-        ],
-        "answer": "Using <Component /> syntax"
-      },
-      {
-        "question": "Which method is used to update the state in React component?",
-        "options": ["setState()", "updateState()", "modifyState()"],
-        "answer": "setState()"
-      },
-      {
-        "question": "What is the purpose of 'props' in React?",
-        "options": [
-          "To enable two-way binding",
-          "To pass data from parent to child components",
-          "To define component styles"
-        ],
-        "answer": "To pass data from parent to child components"
-      }
-    ],
-    "set3": [
-      {
-        "question": "What is the key benefit of using React hooks?",
-        "options": [
-          "Easier component reuse",
-          "Class component optimization",
-          "Simpler state management"
-        ],
-        "answer": "Simpler state management"
-      },
-      {
-        "question": "Which lifecycle method is invoked immediately after a component is mounted?",
-        "options": [
-          "componentDidMount()",
-          "componentWillUnmount()",
-          "componentDidUpdate()"
-        ],
-        "answer": "componentDidMount()"
-      },
-      {
-        "question": "What is the purpose of the 'useState' hook in React?",
-        "options": [
-          "To initialize component state",
-          "To fetch data from an API",
-          "To define component props"
-        ],
-        "answer": "To initialize component state"
-      }
-    ]
-  }
+  "reactjs": {
+  "set1": [
+    {
+      "question": "What is ReactJS?",
+      "options": [
+        "A JavaScript framework",
+        "A Python library",
+        "A CSS preprocessor"
+      ],
+      "answer": "A JavaScript framework"
+    },
+    {
+      "question": "What is the main advantage of using ReactJS?",
+      "options": [
+        "Easier debugging",
+        "Faster rendering",
+        "Built-in testing tools"
+      ],
+      "answer": "Faster rendering"
+    },
+    {
+      "question": "Which virtual DOM concept does ReactJS utilize for efficient updates?",
+      "options": [
+        "Shadow DOM",
+        "Light DOM",
+        "Fiber"
+      ],
+      "answer": "Fiber"
+    }
+  ],
+  "set2": [
+    {
+      "question": "How do you render a React component within another component?",
+      "options": [
+        "Using ReactDOM.render()",
+        "Using document.createElement()",
+        "Using <Component /> syntax"
+      ],
+      "answer": "Using <Component /> syntax"
+    },
+    {
+      "question": "Which method is used to update the state in React component?",
+      "options": [
+        "setState()",
+        "updateState()",
+        "modifyState()"
+      ],
+      "answer": "setState()"
+    },
+    {
+      "question": "What is the purpose of 'props' in React?",
+      "options": [
+        "To enable two-way binding",
+        "To pass data from parent to child components",
+        "To define component styles"
+      ],
+      "answer": "To pass data from parent to child components"
+    }
+  ],
+  "set3": [
+    {
+      "question": "What is the key benefit of using React hooks?",
+      "options": [
+        "Easier component reuse",
+        "Class component optimization",
+        "Simpler state management"
+      ],
+      "answer": "Simpler state management"
+    },
+    {
+      "question": "Which lifecycle method is invoked immediately after a component is mounted?",
+      "options": [
+        "componentDidMount()",
+        "componentWillUnmount()",
+        "componentDidUpdate()"
+      ],
+      "answer": "componentDidMount()"
+    },
+    {
+      "question": "What is the purpose of the 'useState' hook in React?",
+      "options": [
+        "To initialize component state",
+        "To fetch data from an API",
+        "To define component props"
+      ],
+      "answer": "To initialize component state"
+    }
+  ]
+}
+
 }
      

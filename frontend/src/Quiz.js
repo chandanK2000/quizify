@@ -1,6 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import quizData from './questions.json';
+import './Quiz.css'
+import QuizContent from './QuizContent';
+import QuizResult from './QuizResult';
+import {FaPlay } from 'react-icons/fa';
 
 const Quiz = ({ subjectName, quizSet }) => {
   const [questions, setQuestions] = useState([]);
@@ -8,6 +11,8 @@ const Quiz = ({ subjectName, quizSet }) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [quizStarted, setQuizStarted] = useState(false);
+  const [agreeChecked, setAgreeChecked] = useState(false);
 
   useEffect(() => {
     // Load quiz data based on subjectName and quizSet
@@ -19,19 +24,39 @@ const Quiz = ({ subjectName, quizSet }) => {
     setSelectedOption(option);
   };
 
-  const handleNextQuestion = () => {
-    // Check if the selected option is correct
-    const currentQuestion = questions[currentQuestionIndex];
-    if (selectedOption === currentQuestion.answer) {
-      setScore(score + 1);
+  const handlePreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+      setSelectedOption(questions[currentQuestionIndex - 1].selectedOption || '');
     }
+  };
+
+  const handleNextQuestion = () => {
+    const currentQuestion = questions[currentQuestionIndex];
+
+    // Save selected option to the current question
+    const updatedQuestions = [...questions];
+    updatedQuestions[currentQuestionIndex].selectedOption = selectedOption;
+    setQuestions(updatedQuestions);
 
     // Move to the next question
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedOption('');
-    } else {
-      // Quiz completed
+      setSelectedOption(questions[currentQuestionIndex + 1].selectedOption || '');
+    }
+  };
+
+  const handleSubmit = () => {
+    const confirmed = window.confirm("Are you sure you want to submit the quiz?");
+    if (confirmed) {
+      // Calculate the final score
+      const finalScore = questions.reduce((acc, question) => {
+        if (question.selectedOption === question.answer) {
+          return acc + 1;
+        }
+        return acc;
+      }, 0);
+      setScore(finalScore);
       setQuizCompleted(true);
     }
   };
@@ -43,42 +68,63 @@ const Quiz = ({ subjectName, quizSet }) => {
     setQuizCompleted(false);
   };
 
-  if (questions.length === 0) {
-    return <div>Loading...</div>; // Add a loading indicator while data is being fetched
-  }
+  const startQuiz = () => {
+    if (agreeChecked) {
+      setQuizStarted(true);
+    } else {
+      alert("Please agree to the terms and conditions before starting the quiz.");
+    }
+  };
 
-  if (quizCompleted) {
-    return (
-      <div>
-        <h2>Quiz Completed!</h2>
-        <p>Your Score: {score} / {questions.length}</p>
-        <button  className="btn btn-success m-2"  onClick={restartQuiz}>Restart Quiz</button>
-      </div>
-    );
-  }
-
-  const currentQuestion = questions[currentQuestionIndex];
+  const handleAgreeChange = () => {
+    setAgreeChecked(!agreeChecked);
+  };
 
   return (
-    <div>
-      <h2>{currentQuestion.question}</h2>
-      <ul>
-        {currentQuestion.options.map((option, index) => (
-          <li key={index}>
+    <div >
+      {!quizStarted && (
+        <div className="quizcontainers">
+          <div className="instructions">
+            <h4>Instructions:</h4>
+            <ul>
+              <li>Read each question carefully before selecting your answer.</li>
+              <li>Answer all questions to the best of your ability.</li>
+              <li>Make sure to review your answers before submitting the quiz.</li>
+            </ul>
+          </div>
+          <div className="agree-checkbox">
             <label>
               <input
-                type="radio"
-                name="option"
-                value={option}
-                checked={selectedOption === option}
-                onChange={() => handleOptionSelect(option)}
+                type="checkbox"
+                checked={agreeChecked}
+                onChange={handleAgreeChange}
               />
-              {option}
+              I agree to the terms and conditions
             </label>
-          </li>
-        ))}
-      </ul>
-      <button  className="btn btn-primary m-2"  onClick={handleNextQuestion}>Next</button>
+          </div>
+          <button className="btn btn-primary m-2" onClick={startQuiz} disabled={!agreeChecked}>
+            <FaPlay /> Start Quiz
+          </button>
+        </div>
+      )}
+      {quizStarted && !quizCompleted && (
+        <QuizContent
+          questions={questions}
+          currentQuestionIndex={currentQuestionIndex}
+          selectedOption={selectedOption}
+          handleOptionSelect={handleOptionSelect}
+          handlePreviousQuestion={handlePreviousQuestion}
+          handleSubmit={handleSubmit}
+          handleNextQuestion={handleNextQuestion}
+        />
+      )}
+      {quizCompleted && (
+        <QuizResult
+          score={score}
+          totalQuestions={questions.length}
+          restartQuiz={restartQuiz}
+        />
+      )}
     </div>
   );
 };
