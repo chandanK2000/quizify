@@ -1,4 +1,4 @@
-// courseData.js
+
 export const courses = [
   {
     category: "CMS & Web Technologies",
@@ -97,9 +97,7 @@ export const freeResources = [
         { name: "CSS Quiz", link: "/free-quizzes/css" },
         { name: "JavaScript Quiz", link: "/free-quizzes/javascript" },
         { name: "Reactjs Quiz", link: "/free-quizzes/react" }
-        // { name: "Anjular Quiz", link: "/free-quizzes/anjular" },
-        // { name: "Java Quiz", link: "/free-quizzes/java" },
-        // { name: "Bootstrap Quiz", link: "/free-quizzes/bootstrap" },
+       
       ]
     ]
   }

@@ -18,9 +18,7 @@ const QuizSet = () => {
     css: [1, 2, 3, 4, 5, 6, 7],
     javascript: [1, 2, 3],
     react: [1, 2, 3],
-    // anjular: [1, 2, 3, 4, 5],
-    // java: [1, 2, 3, 4, 5],
-    // bootstrap: [1, 2, 3, 4, 5],
+   
   };
 
   return (
