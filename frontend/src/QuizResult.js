@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './QuizResult.css';
-import { FaRedo, FaDownload, FaSave, FaLaugh, FaEye, FaEyeSlash, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { FaRedo, FaDownload,FaLaugh, FaEye, FaEyeSlash, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 
 const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
   const [showReview, setShowReview] = useState(true);
@@ -61,21 +61,53 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
   };
 
   // Function to save the quiz history
-  const saveHistory = () => {
-    const dateTime = new Date().toLocaleString();
-    const historyData = `
-      Quiz Result:
-      Total Questions: ${totalQuestions}
-      Correct Answers: ${score} (${correctPercentage.toFixed(2)}%)
-      Wrong Answers: ${wrongAnswers} (${wrongPercentage.toFixed(2)}%)
-      Percentage Score: ${percentageScore.toFixed(2)}%
-      Result: ${getResultMessage(percentageScore)}
-      Date and Time: ${dateTime}
-      Name: ${userData ? userData.name : "Unknown"}
-      Email: ${userData ? userData.email : "Unknown"}
-    `;
-    alert(historyData);
-  };
+  // const saveHistory = () => {
+  //   const dateTime = new Date().toLocaleString();
+  //   const historyData = `
+  //     Quiz Result:
+  //     Total Questions: ${totalQuestions}
+  //     Correct Answers: ${score} (${correctPercentage.toFixed(2)}%)
+  //     Wrong Answers: ${wrongAnswers} (${wrongPercentage.toFixed(2)}%)
+  //     Percentage Score: ${percentageScore.toFixed(2)}%
+  //     Result: ${getResultMessage(percentageScore)}
+  //     Date and Time: ${dateTime}
+  //     Name: ${userData ? userData.name : "Unknown"}
+  //     Email: ${userData ? userData.email : "Unknown"}
+  //   `;
+  //   alert(historyData);
+  // };
+  // Function to save the quiz history
+  // const saveHistory = async () => {
+  //   const dateTime = new Date().toLocaleString();
+  //   const historyData = {
+  //     totalQuestions,
+  //     correctAnswers: score,
+  //     wrongAnswers,
+  //     percentageScore: percentageScore.toFixed(2),
+  //     result: getResultMessage(percentageScore),
+  //     dateTime,
+  //     name: userData ? userData.name : "Unknown",
+  //     email: userData ? userData.email : "Unknown"
+  //   };
+
+  //   try {
+  //     const response = await fetch('http://localhost:4000/api/save-history', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify(historyData)
+  //     });
+  //     if (!response.ok) {
+  //       throw new Error('Failed to save quiz history');
+  //     }
+  //     alert('Quiz history saved successfully!');
+  //   } catch (error) {
+  //     console.error('Error saving quiz history:', error.message);
+  //     alert('Failed to save quiz history. Please try again later.');
+  //   }
+  // };
+
 
   return (
     <div className="quiz-result-container">
@@ -111,7 +143,7 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
         <div>
           <button className="btn btn-success m-2" onClick={restartQuiz}><FaRedo /> Restart Quiz</button>
           <button className="btn btn-success m-2" onClick={downloadResult}><FaDownload /> Download Result</button>
-          <button className="btn btn-success m-2" onClick={saveHistory}><FaSave /> Save History</button>
+          {/* <button className="btn btn-success m-2" onClick={saveHistory}><FaSave /> Save History</button> */}
         </div>
       </div>
     </div>

@@ -3,13 +3,13 @@ POST http://localhost:4000/api/users/register
 Content-Type: application/json
 
 {
-  "name": "salman",
-  "email": "salman@gmail.com",
-  "password": "salman",
-  "confirmPassword": "salman",
+  "name": "mohan Doe",
+  "email": "sohan@example.com",
+  "password": "password123",
+  "confirmPassword": "password123",
+  "address": "123 Main St",
   "mobile": "1234567890"
 }
-
 
 //this api is for all the users
 ###
@@ -19,7 +19,7 @@ GET http://localhost:4000/api/users
 //Delete user 
 # DELETE /api/users/:id
 ###
-DELETE http://localhost:4000/api/users/6654a79fdba2dbb56a05469a
+DELETE http://localhost:4000/api/users/665b778652224e14e6d97b1c
 
 ###
 # POST /api/users/login
@@ -27,8 +27,8 @@ POST http://localhost:4000/api/users/login
 Content-Type: application/json
 
 {
-  "email": "siyaramray@gmail.com",
-  "password": "siyaram123"
+  "email": "mohan@example.com",
+  "password": "password123"
 }
 
 
@@ -36,7 +36,7 @@ Content-Type: application/json
 
 # PUT /api/users/:id
 ###
-PUT http://localhost:4000/api/users/6654ad098e6d0be2dcae4d00
+PUT http://localhost:4000/api/users/665b776f52224e14e6d97b19
 Content-Type: application/json
 
 {
@@ -103,16 +103,42 @@ POST http://localhost:4000/api/questions
 Content-Type: application/json
 
 {
-  "text": "Why need css?",
-  "options": ["for desinging", "kdfklsdf ", "slkfjskdf","ksjfhksj hfkjsdhf"],
-  "correctAnswer": 0,
-  "topic": "css",
-  "set": 1
+  "subjectName": "css",
+  "quizSet": "set4",
+  "question": "Which CSS property is used to align text?",
+  "options": [
+    "text-align",
+    "color",
+    "background-color",
+    "font-size"
+  ],
+  "answer": "text-align"
 }
 
+
+//get questions
+
 ###
-GET http://localhost:4000/api/questions?subject=css&set=1
+GET http://localhost:4000/api/questions/css/set1
 
 
-###
-DELETE http://localhost:4000/api/questions/66586d14d73b2c14c6e35cdb
+# GET http://localhost:4000/api/questions/:subjectName/:quizSet
+
+
+### Save Quiz History
+POST http://localhost:4000/api/quiz-history
+Content-Type: application/json
+
+{
+  "userId": "665b776f52224e14e6d97b19",  
+  "subjectName": "CSS",
+  "quizSet": "set3",
+  "totalQuestions": "5",
+  "correctAnswers": "3",
+  "wrongAnswers": "2",
+  "percentageScore":" 60.00",
+  "resultMessage": "Congratulations! You did very well.",
+  "dateTime": "2024-06-01T22:56:36.000Z",
+  "name": "rajesh",
+  "email": "rajesh@gmail.com"
+}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import quizData from './questions.json';
 import './Quiz.css';
 import QuizContent from './QuizContent';
 import QuizResult from './QuizResult';
@@ -13,10 +12,26 @@ const Quiz = ({ subjectName, quizSet }) => {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
   const [agreeChecked, setAgreeChecked] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const quizSetData = quizData[subjectName][`set${quizSet}`];
-    setQuestions(quizSetData);
+    const fetchQuestions = async () => {
+      try {
+        const response = await fetch(`http://localhost:4000/api/questions/${subjectName}/set${quizSet}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch questions');
+        }
+        const data = await response.json();
+        console.log(data);
+        setQuestions(data);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        // Handle error fetching questions
+      }
+    };
+
+    fetchQuestions();
   }, [subjectName, quizSet]);
 
   const handleOptionSelect = (option) => {
@@ -26,29 +41,23 @@ const Quiz = ({ subjectName, quizSet }) => {
   const handlePreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
-      setSelectedOption(questions[currentQuestionIndex - 1].selectedOption || '');
     }
   };
 
   const handleNextQuestion = () => {
-    const updatedQuestions = [...questions];
-    updatedQuestions[currentQuestionIndex].selectedOption = selectedOption;
-    setQuestions(updatedQuestions);
-
     if (currentQuestionIndex < questions.length - 1) {
+      const updatedQuestions = [...questions];
+      updatedQuestions[currentQuestionIndex].selectedOption = selectedOption;
+      setQuestions(updatedQuestions);
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedOption(questions[currentQuestionIndex + 1].selectedOption || '');
+      setSelectedOption(''); 
     }
   };
 
   const handleSubmit = () => {
     const confirmed = window.confirm("Are you sure you want to submit the quiz?");
     if (confirmed) {
-      const updatedQuestions = [...questions];
-      updatedQuestions[currentQuestionIndex].selectedOption = selectedOption;
-      setQuestions(updatedQuestions);
-
-      const finalScore = updatedQuestions.reduce((acc, question) => {
+      const finalScore = questions.reduce((acc, question) => {
         if (question.selectedOption === question.answer) {
           return acc + 1;
         }
@@ -60,16 +69,11 @@ const Quiz = ({ subjectName, quizSet }) => {
   };
 
   const restartQuiz = () => {
-    const resetQuestions = questions.map((question) => ({
-      ...question,
-      selectedOption: '',
-    }));
-    setQuestions(resetQuestions);
     setCurrentQuestionIndex(0);
     setSelectedOption('');
     setScore(0);
     setQuizCompleted(false);
-    setQuizStarted(true); // Ensure the quiz stays in started state
+    setQuizStarted(true);
   };
 
   const startQuiz = () => {
@@ -86,7 +90,7 @@ const Quiz = ({ subjectName, quizSet }) => {
 
   return (
     <div>
-      {!quizStarted && (
+      {!quizStarted && !loading && (
         <div className="quizcontainers">
           <div className="instructions">
             <h4>Instructions:</h4>
@@ -111,7 +115,7 @@ const Quiz = ({ subjectName, quizSet }) => {
           </button>
         </div>
       )}
-      {quizStarted && !quizCompleted && (
+      {quizStarted && !quizCompleted && !loading && questions.length > 0 && (
         <QuizContent
           questions={questions}
           currentQuestionIndex={currentQuestionIndex}
@@ -122,7 +126,7 @@ const Quiz = ({ subjectName, quizSet }) => {
           handleNextQuestion={handleNextQuestion}
         />
       )}
-      {quizCompleted && (
+      {quizCompleted && !loading && questions.length > 0 && (
         <QuizResult
           score={score}
           totalQuestions={questions.length}

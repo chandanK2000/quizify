@@ -1,12 +1,27 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const path = require('path');
+
+// Configure Multer for image upload
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage: storage });
 const jwtSecret = process.env.JWT_SECRET;
 
 // Register a new user
 exports.registerUser = async (req, res) => {
   try {
-    const { name, email, password, confirmPassword, mobile } = req.body;
+    const { name, email, password, confirmPassword, address, mobile } = req.body;
+    const image = req.file ? req.file.path : '';
 
     // Check if passwords match
     if (password !== confirmPassword) {
@@ -18,7 +33,7 @@ exports.registerUser = async (req, res) => {
       return res.status(400).send('Email already exists');
     }
 
-    const newUser = new User({ name, email, password, mobile });
+    const newUser = new User({ name, email, password, address, mobile, image });
     await newUser.save();
     res.status(201).send(`${name} created successfully`);
   } catch (error) {
@@ -27,7 +42,6 @@ exports.registerUser = async (req, res) => {
 };
 
 // Login user
-
 exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -48,12 +62,13 @@ exports.loginUser = async (req, res) => {
     const capitalizedName = user.name.charAt(0).toUpperCase() + user.name.slice(1);
 
     // Generate token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.json({ token, name: user.name,email:user.email, message: `${capitalizedName} logged in successfully` });
+    const token = jwt.sign({ userId: user._id }, jwtSecret, { expiresIn: '1h' });
+    res.json({ token, name: user.name, email: user.email, message: `${capitalizedName} logged in successfully` });
   } catch (error) {
     res.status(500).send('Error logging in: ' + error.message);
   }
 };
+
 // Get all users
 exports.getAllUsers = async (req, res) => {
   try {
@@ -83,7 +98,8 @@ exports.deleteUser = async (req, res) => {
 exports.updateUserDetails = async (req, res) => {
   try {
     const userId = req.params.id;
-    const { name, email, password, mobile, profileImage, address, bio } = req.body;
+    const { name, email, password, mobile, address, bio } = req.body;
+    const profileImage = req.file ? req.file.path : null;
 
     // Check if user exists
     const user = await User.findById(userId);
@@ -99,7 +115,7 @@ exports.updateUserDetails = async (req, res) => {
       user.password = await bcrypt.hash(password, salt);
     }
     if (mobile) user.mobile = mobile;
-    if (profileImage) user.profileImage = profileImage;
+    if (profileImage) user.image = profileImage;
     if (address) user.address = address;
     if (bio) user.bio = bio;
 
@@ -110,3 +126,6 @@ exports.updateUserDetails = async (req, res) => {
     res.status(500).send('Error updating user details: ' + error.message);
   }
 };
+
+// Multer upload middleware for profile image
+exports.uploadProfileImage = upload.single('image');

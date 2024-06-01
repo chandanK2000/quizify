@@ -35,7 +35,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/free-quizzes/:subjectName" element={<QuizSet />} />
-            <Route exact path="/free-quizzes/:subjectName/set/:quizSet" element={<QuizSetDetails />} />
+          <Route exact path="/free-quizzes/:subjectName/set/:quizSet" element={<QuizSetDetails />} />
         </Routes>
       )}
       <ScrollToTopButton />

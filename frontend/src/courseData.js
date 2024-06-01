@@ -96,7 +96,9 @@ export const freeResources = [
         { name: "HTML Quiz", link: "/free-quizzes/html" },
         { name: "CSS Quiz", link: "/free-quizzes/css" },
         { name: "JavaScript Quiz", link: "/free-quizzes/javascript" },
-        { name: "Reactjs Quiz", link: "/free-quizzes/react" }
+        { name: "Reactjs Quiz", link: "/free-quizzes/react" },
+        { name: "Bootstrap", link: "/free-quizzes/bootstrap" },
+        
        
       ]
     ]

@@ -1,64 +1,39 @@
-
 const Question = require('../models/question');
 
-// Controller function to create a new question
 exports.createQuestion = async (req, res) => {
+  const { subjectName, quizSet, question, options, answer } = req.body;
   try {
-    // Extract question data from request body
-    const { text, options, correctAnswer, topic, set } = req.body; 
-
-    // Create a new question document
-    const newQuestion = new Question({
-      text,
-      options,
-      correctAnswer,
-      topic, 
-      set
-    });
-
-    // Save the new question to the database
-    await newQuestion.save();
-
-    // Send a success response
-    res.status(201).json({ message: 'Question created successfully', question: newQuestion });
-  } catch (error) {
-    console.error('Error creating question:', error);
-    // Send an error response
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
-
-
-//get 
-
-exports.getQuestionsBySubjectAndSet = async (req, res) => {
-  try {
-    const { subject, set } = req.query; 
-   
-    const questions = await Question.find({ topic: subject, set: parseInt(set) }); 
-    res.json(questions);
-  } catch (error) {
-    console.error('Error fetching questions:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-};
-
-//delete
-
-exports.deleteQuestionById = async (req, res) => {
-  try {
-    const { id } = req.params; // Extract question ID from URL parameters
-    // Find the question by ID and delete it
-    const deletedQuestion = await Question.findOneAndDelete({ _id: id });
-    if (!deletedQuestion) {
-      // If the question with the specified ID was not found, send a 404 Not Found response
-      return res.status(404).json({ error: 'Question not found' });
+    if (!subjectName || !quizSet || !question || !options || !answer) {
+      return res.status(400).json({ message: "All fields are required." });
     }
-    // Send a success response
-    res.json({ message: 'Question deleted successfully', question: deletedQuestion });
-  } catch (error) {
-    console.error('Error deleting question:', error);
-    // Send an error response
-    res.status(500).json({ error: 'Internal server error' });
+
+    const newQuestion = new Question({ subjectName, quizSet, question, options, answer });
+    const savedQuestion = await newQuestion.save();
+    res.json({
+      message: "Question saved successfully",
+      question: savedQuestion
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+exports.getQuestions = async (req, res) => {
+  const { subjectName, quizSet } = req.params;
+  try {
+    if (!subjectName || !quizSet) {
+      return res.status(400).json({ message: "Subject name and quiz set are required." });
+    }
+
+    const questions = await Question.find({ subjectName, quizSet });
+    if (!questions || questions.length === 0) {
+      return res.status(404).json({ message: "No questions found for the specified subject and quiz set." });
+    }
+
+    res.json(questions);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };

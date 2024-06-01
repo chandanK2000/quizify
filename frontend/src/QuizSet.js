@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { RiArrowGoBackLine, RiPlayFill, RiHistoryLine } from 'react-icons/ri';
-import './QuizSet.css'; 
+import './QuizSet.css';
 
 const QuizSet = () => {
   const { subjectName } = useParams();
@@ -14,12 +14,24 @@ const QuizSet = () => {
 
   // Define quiz sets for each subject
   const quizSets = {
-    html: [1, 2, 3, 4, 5, 6, 7],
-    css: [1, 2, 3, 4, 5, 6, 7],
+    html: [1, 2, 3,4,5,6,7],
+    css: [1, 2, 3],
     javascript: [1, 2, 3],
-    react: [1, 2, 3],
-   
+    // react: [1, 2, 3],
+    // bootstrap: [1, 2, 3],
   };
+
+  // Check if subjectName exists in quizSets
+  if (!quizSets.hasOwnProperty(subjectName)) {
+    return (
+      <div className="quiz-set-container">
+        <h2 className="quiz-set-title">No Quiz Sets Available for {subjectName.toUpperCase()}</h2>
+        <button className="btn btn-primary back-btn" onClick={() => navigate(-1)}>
+          <RiArrowGoBackLine /> Back
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="quiz-set-container">

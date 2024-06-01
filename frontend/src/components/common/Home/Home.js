@@ -12,6 +12,7 @@ import Placements from './Placements';
 import Infocourses from './Infocourses';
 import AllCourses from './AllCourses';
 import Interviewquestions from './Interviewquestions';
+// import FetchApi from '../../../fetchapi';
 
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
     <div>
       <Fueling openDemoForm={openModal} />
       <OurLearners />
+      {/* <FetchApi /> */}
       <Buildcareer />
       <OurOnlineCourses />
       <LearnerNumbers />
