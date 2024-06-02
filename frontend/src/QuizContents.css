@@ -1,16 +1,22 @@
 .quizcontent-container {
   display: flex;
-  justify-content: space-between;
-  padding: 30px;
+  justify-content: center;
+  align-items: center;
+  padding:10px 40px;
 }
-
 .quiz-content {
-  width: 70%;
+  width: 80%;
   background-color: #f4f4f9;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
+}
+.vertical-stepper{
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .question-header {
@@ -26,56 +32,6 @@
   text-align: center;
   border-radius: 4px;
   font-weight: 500;
-}
-
-.progress-bar-container {
-  width: 100%;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  margin: 10px 0;
-  overflow: hidden;
-}
-
-.progress-bar-container .progress-bar {
-  height: 5px;
-  background-color: #14ee43;
-  transition: width 0.3s ease;
-}.quizcontent-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.quiz-progress {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column; /* Display the stepper vertically */
-  align-items: flex-end; /* Align the stepper to the right */
-}
-
-/* Adjust the style for each step */
-.step {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #aaa;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 10px; /* Add some margin between steps */
-}
-
-.completed {
-  background-color: #4caf50;
-  color: #fff;
-}
-
-/* Style for the connector */
-.connector {
-  flex-grow: 1; /* Ensure the connector takes up remaining space */
-  height: 2px; /* Adjust the height of the connector */
-  background-color: #aaa;
 }
 
 .button-groupquiz {

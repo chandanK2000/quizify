@@ -1,0 +1,45 @@
+.quiz-history-container {
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  background-color: #ecc8c8;
+}
+
+.quiz-history-container h2{
+  text-align: center;
+  color: #250202;
+}
+
+.quiz-history-list {
+  margin-top: 20px;
+}
+
+.history-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.history-item div {
+  margin-bottom: 5px;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+@media screen and (max-width: 768px) {
+  .quiz-history-container {
+    width: 90%;
+  }
+}

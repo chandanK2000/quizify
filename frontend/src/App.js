@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import QuizSet from './QuizSet';
 import QuizSetDetails from './QuizSetDetails';
+import QuizHistory from './QuizHistory';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -36,6 +37,8 @@ function App() {
           <Route exact path="/about" element={<About />} />
           <Route exact path="/free-quizzes/:subjectName" element={<QuizSet />} />
           <Route exact path="/free-quizzes/:subjectName/set/:quizSet" element={<QuizSetDetails />} />
+            <Route path="/quiz-history/:subjectName/set/:set" element={<QuizHistory />} />
+
         </Routes>
       )}
       <ScrollToTopButton />

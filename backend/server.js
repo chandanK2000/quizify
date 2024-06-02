@@ -1,8 +1,11 @@
-
+// app.js (or your main file)
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const cors = require('cors');
+const userRoutes = require('./routes/userRoutes');
+const questionRoutes = require('./routes/questionRoutes');
+const quizResultRoutes = require('./routes/quizResultRoutes'); // Ensure this import
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -26,12 +29,9 @@ mongoose.connect(DB, {
   console.error("Database connection failed:", error);
 });
 
-const userRoutes = require('./routes/userRoutes.js');
-const questionRoutes = require('./routes/questionRoutes');
-
 app.use('/api/questions', questionRoutes);
 app.use('/api/users', userRoutes);
-// app.use('/api/quiz-result', quizResultRoutes);
+app.use('/api/quizResults', quizResultRoutes);
 
-const adminRoutes = require('./routes/adminRoutes.js');
+const adminRoutes = require('./routes/adminRoutes');
 app.use('/api/admin', adminRoutes);

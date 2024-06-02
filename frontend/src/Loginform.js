@@ -87,9 +87,11 @@ const Loginform = ({ onRegisterLinkClick }) => {
       if (response.ok) {
         const userData = await response.json();
         console.log(userData);
+        // alert(userData.name);
+        // alert(userData.userId);
+        alert(userData.token);
+        window.location.reload();// to reload the page
         localStorage.setItem('userData', JSON.stringify(userData));
-
-
 
         // Clear the form fields
         if (loginMethod === 'email') {
@@ -100,12 +102,9 @@ const Loginform = ({ onRegisterLinkClick }) => {
           setOtp('');
           setOtpSent(false);
         }
-        return toast.success(`${userData.name} Log in successfully`);
-    
-       
+        return toast.success(`${userData.name} logged in successfully`);
       } else {
         const data = await response.json();
-        
         return toast.error(data.message || 'Login failed');
       }
     } catch (error) {
@@ -114,8 +113,6 @@ const Loginform = ({ onRegisterLinkClick }) => {
     }
   };
 
-
-  
   return (
     <div>
       <div className="mb-3">
@@ -190,7 +187,6 @@ const Loginform = ({ onRegisterLinkClick }) => {
         )}
         <div className='text-center'>
           <button type="submit" className="btn btn-primary mx-2" disabled={loginMethod === 'mobile' && !otp.trim()}>Login</button>
-
         </div>
       </form>
     </div>

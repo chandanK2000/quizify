@@ -3,6 +3,8 @@ import './Quiz.css';
 import QuizContent from './QuizContent';
 import QuizResult from './QuizResult';
 import { FaPlay } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Quiz = ({ subjectName, quizSet }) => {
   const [questions, setQuestions] = useState([]);
@@ -34,8 +36,19 @@ const Quiz = ({ subjectName, quizSet }) => {
     fetchQuestions();
   }, [subjectName, quizSet]);
 
+  useEffect(() => {
+    // Set the selected option when loading a question
+    if (questions.length > 0) {
+      setSelectedOption(questions[currentQuestionIndex]?.selectedOption || '');
+    }
+  }, [currentQuestionIndex, questions]);
+
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
+    // Update the selected option in the question data
+    const updatedQuestions = [...questions];
+    updatedQuestions[currentQuestionIndex].selectedOption = option;
+    setQuestions(updatedQuestions);
   };
 
   const handlePreviousQuestion = () => {
@@ -46,11 +59,7 @@ const Quiz = ({ subjectName, quizSet }) => {
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
-      const updatedQuestions = [...questions];
-      updatedQuestions[currentQuestionIndex].selectedOption = selectedOption;
-      setQuestions(updatedQuestions);
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedOption(''); 
     }
   };
 
@@ -65,10 +74,13 @@ const Quiz = ({ subjectName, quizSet }) => {
       }, 0);
       setScore(finalScore);
       setQuizCompleted(true);
+      toast.success('Quiz completed successfully!'); // Display toast message
     }
   };
 
   const restartQuiz = () => {
+    const resetQuestions = questions.map(question => ({ ...question, selectedOption: '' }));
+    setQuestions(resetQuestions);
     setCurrentQuestionIndex(0);
     setSelectedOption('');
     setScore(0);
@@ -89,16 +101,18 @@ const Quiz = ({ subjectName, quizSet }) => {
   };
 
   return (
-    <div>
+    <div className='main_containers'>
       {!quizStarted && !loading && (
         <div className="quizcontainers">
           <div className="instructions">
             <h4>Instructions:</h4>
-            <ul>
-              <li>Read each question carefully before selecting your answer.</li>
-              <li>Answer all questions to the best of your ability.</li>
-              <li>Make sure to review your answers before submitting the quiz.</li>
-            </ul>
+            <div className='instruction_list'>
+              <ul>
+                <li>Read each question carefully before selecting your answer.</li>
+                <li>Answer all questions to the best of your ability.</li>
+                <li>Make sure to review your answers before submitting the quiz.</li>
+              </ul>
+            </div>
           </div>
           <div className="agree-checkbox">
             <label>

@@ -1,8 +1,7 @@
 import React from 'react';
-import './QuizContents.css';
+import { Stepper, Step, StepLabel, Button } from '@mui/material';
 import { FaChevronLeft, FaChevronRight, FaCheck } from 'react-icons/fa';
-import Stepper from 'react-stepper-horizontal';
-
+import './QuizContents.css';
 const QuizContent = ({
   questions,
   currentQuestionIndex,
@@ -38,39 +37,41 @@ const QuizContent = ({
           ))}
         </ol>
         <div className="button-groupquiz">
-          <button
-            className="btn btn-secondary"
+          <Button
+            variant="contained"
+            color="secondary"
+            startIcon={<FaChevronLeft />}
             onClick={handlePreviousQuestion}
             disabled={currentQuestionIndex === 0}
           >
-            <FaChevronLeft /> Prev
-          </button>
-          <button
-            className="btn btn-warning"
+            Prev
+          </Button>
+          <Button
+            variant="contained"
+            color="warning" 
             onClick={handleSubmit}
           >
-            <FaCheck /> Submit
-          </button>
-          <button
-            className="btn btn-primary"
+            <FaCheck />    Submit
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<FaChevronRight />}
             onClick={handleNextQuestion}
             disabled={currentQuestionIndex === questions.length - 1}
           >
-            <FaChevronRight /> Next
-          </button>
+            Next
+          </Button>
         </div>
       </div>
-      <div className="quiz-progress">
-        <Stepper
-          steps={questions.map((_, index) => ({
-            title: `Question ${index + 1}`,
-          }))}
-          activeStep={currentQuestionIndex}
-          activeColor="#007bff"
-          completeColor="#28a745"
-          circleFontColor="#fff"
-          direction="horizontal"
-        />
+      <div className="vertical-stepper">
+        <Stepper activeStep={currentQuestionIndex} orientation="vertical">
+          {questions.map((question, index) => (
+            <Step key={index}>
+              <StepLabel>{`--Question -${index + 1}`}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
       </div>
     </div>
   );

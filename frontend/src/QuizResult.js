@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './QuizResult.css';
-import { FaRedo, FaDownload,FaLaugh, FaEye, FaEyeSlash, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
-
+import { FaRedo, FaDownload, FaLaugh, FaEye, FaEyeSlash, FaCheckCircle, FaTimesCircle, FaSave } from 'react-icons/fa';
+import {Button } from '@mui/material';
+import { toast } from 'react-toastify';
 const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
   const [showReview, setShowReview] = useState(true);
   const [userData, setUserData] = useState(null);
@@ -58,6 +59,8 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
 
     link.click();
     window.URL.revokeObjectURL(link.href);
+    toast.success('Result downloaded successfully!');
+
   };
 
   // Function to save the quiz history
@@ -77,36 +80,36 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
   //   alert(historyData);
   // };
   // Function to save the quiz history
-  // const saveHistory = async () => {
-  //   const dateTime = new Date().toLocaleString();
-  //   const historyData = {
-  //     totalQuestions,
-  //     correctAnswers: score,
-  //     wrongAnswers,
-  //     percentageScore: percentageScore.toFixed(2),
-  //     result: getResultMessage(percentageScore),
-  //     dateTime,
-  //     name: userData ? userData.name : "Unknown",
-  //     email: userData ? userData.email : "Unknown"
-  //   };
+  const saveHistory = async () => {
+    const dateTime = new Date().toLocaleString();
+    const historyData = {
+      totalQuestions,
+      correctAnswers: score,
+      wrongAnswers,
+      percentageScore: percentageScore.toFixed(2),
+      result: getResultMessage(percentageScore),
+      dateTime,
+      name: userData ? userData.name : "Unknown",
+      email: userData ? userData.email : "Unknown"
+    };
 
-  //   try {
-  //     const response = await fetch('http://localhost:4000/api/save-history', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(historyData)
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error('Failed to save quiz history');
-  //     }
-  //     alert('Quiz history saved successfully!');
-  //   } catch (error) {
-  //     console.error('Error saving quiz history:', error.message);
-  //     alert('Failed to save quiz history. Please try again later.');
-  //   }
-  // };
+    try {
+      const response = await fetch('http://localhost:4000/api/save-history', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(historyData)
+      });
+      if (!response.ok) {
+        throw new Error('Failed to save quiz history');
+      }
+      toast.success('Quiz history saved successfully!');
+    } catch (error) {
+      console.error('Error saving quiz history:', error.message);
+      alert('Failed to save quiz history. Please try again later.');
+    }
+  };
 
 
   return (
@@ -143,7 +146,9 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
         <div>
           <button className="btn btn-success m-2" onClick={restartQuiz}><FaRedo /> Restart Quiz</button>
           <button className="btn btn-success m-2" onClick={downloadResult}><FaDownload /> Download Result</button>
-          {/* <button className="btn btn-success m-2" onClick={saveHistory}><FaSave /> Save History</button> */}
+          <Button variant="contained"  onClick={saveHistory}><FaSave /> Save History</Button>
+
+
         </div>
       </div>
     </div>

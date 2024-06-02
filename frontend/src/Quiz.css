@@ -1,13 +1,17 @@
-.quizcontainers {
-  padding: 20px;
 
+.quizcontainers{
+  margin: 40px;
 }
 
 .quizcontainers .instructions {
   background-color: #f0f0f0;
   border-radius: 5px;
   padding: 20px;
-  width: 60%;
+}
+.instruction_list{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .quizcontainers .instructions h4 {

@@ -41,6 +41,7 @@ exports.registerUser = async (req, res) => {
   }
 };
 
+
 // Login user
 exports.loginUser = async (req, res) => {
   try {
@@ -63,11 +64,20 @@ exports.loginUser = async (req, res) => {
 
     // Generate token
     const token = jwt.sign({ userId: user._id }, jwtSecret, { expiresIn: '1h' });
-    res.json({ token, name: user.name, email: user.email, message: `${capitalizedName} logged in successfully` });
+
+    // Include user ID in the response
+    res.json({
+      token,
+      userId: user._id,
+      name: user.name,
+      email: user.email,
+      message: `${capitalizedName} logged in successfully`
+    });
   } catch (error) {
     res.status(500).send('Error logging in: ' + error.message);
   }
 };
+
 
 // Get all users
 exports.getAllUsers = async (req, res) => {

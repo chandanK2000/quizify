@@ -52,6 +52,7 @@ const QuizSet = () => {
               <Link to={`/quiz-history/${subjectName}/set/${set}`}>
                 <button className="custom-btn"><RiHistoryLine /> View History</button>
               </Link>
+
             </div>
           </div>
         ))}

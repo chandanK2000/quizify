@@ -3,11 +3,10 @@ POST http://localhost:4000/api/users/register
 Content-Type: application/json
 
 {
-  "name": "mohan Doe",
-  "email": "sohan@example.com",
-  "password": "password123",
-  "confirmPassword": "password123",
-  "address": "123 Main St",
+  "name": "raybahadur",
+  "email": "raybahadur@example.com",
+  "password": "raybahadur",
+  "confirmPassword": "raybahadur",
   "mobile": "1234567890"
 }
 
@@ -19,7 +18,7 @@ GET http://localhost:4000/api/users
 //Delete user 
 # DELETE /api/users/:id
 ###
-DELETE http://localhost:4000/api/users/665b778652224e14e6d97b1c
+DELETE http://localhost:4000/api/users/665c2c0da4fadcd9bff8c032
 
 ###
 # POST /api/users/login
@@ -27,8 +26,8 @@ POST http://localhost:4000/api/users/login
 Content-Type: application/json
 
 {
-  "email": "mohan@example.com",
-  "password": "password123"
+  "email": "raybahadur@example.com",
+  "password": "raybahadur"
 }
 
 
@@ -60,7 +59,7 @@ Content-Type: application/json
 
 {
   "name": "amit",
-  "email": "mohan@gmail.com",
+  "email": "sdfsd@gmail.com",
   "password": "adminPassword",
   "mobile": "1234567890"
 }
@@ -103,8 +102,8 @@ POST http://localhost:4000/api/questions
 Content-Type: application/json
 
 {
-  "subjectName": "css",
-  "quizSet": "set4",
+  "subjectName": "javascript",
+  "quizSet": "set2",
   "question": "Which CSS property is used to align text?",
   "options": [
     "text-align",
@@ -119,26 +118,26 @@ Content-Type: application/json
 //get questions
 
 ###
-GET http://localhost:4000/api/questions/css/set1
+GET http://localhost:4000/api/questions/javascript/set2
 
 
 # GET http://localhost:4000/api/questions/:subjectName/:quizSet
 
 
 ### Save Quiz History
-POST http://localhost:4000/api/quiz-history
+POST http://localhost:4000/api/results
 Content-Type: application/json
 
 {
-  "userId": "665b776f52224e14e6d97b19",  
-  "subjectName": "CSS",
-  "quizSet": "set3",
-  "totalQuestions": "5",
-  "correctAnswers": "3",
-  "wrongAnswers": "2",
-  "percentageScore":" 60.00",
-  "resultMessage": "Congratulations! You did very well.",
-  "dateTime": "2024-06-01T22:56:36.000Z",
-  "name": "rajesh",
-  "email": "rajesh@gmail.com"
+  "userId": "665c359b4670ea86eed99b58",
+  "subjectName": "css",
+  "quizSet": "Set 1",
+  "totalQuestions": 10,
+  "correctAnswers": 8,
+  "wrongAnswers": 2,
+  "percentageScore": 80,
+  "resultMessage": "Great job!",
+  "dateTime": "2023-06-02T12:00:00Z",
+  "name": "John Doe",
+  "email": "john.doe@example.com"
 }
