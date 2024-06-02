@@ -50,6 +50,9 @@
 .quiz-content ol {
   margin: 0;
   padding-left: 20px;
+  list-style-type: none;
+  padding: 0px;
+  
 }
 
 .quiz-content ol li {

@@ -90,8 +90,8 @@ const Loginform = ({ onRegisterLinkClick }) => {
         // alert(userData.name);
         // alert(userData.userId);
         alert(userData.token);
-        window.location.reload();// to reload the page
-        localStorage.setItem('userData', JSON.stringify(userData));
+         window.location.reload();// to reload the page
+        sessionStorage.setItem('userData', JSON.stringify(userData));
 
         // Clear the form fields
         if (loginMethod === 'email') {

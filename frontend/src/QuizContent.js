@@ -24,6 +24,7 @@ const QuizContent = ({
           {currentQuestion.options.map((option, index) => (
             <li key={index}>
               <label>
+                {String.fromCharCode(65 + index)}-
                 <input
                   type="radio"
                   name={`option-${currentQuestionIndex}`}
@@ -31,11 +32,12 @@ const QuizContent = ({
                   checked={selectedOption === option}
                   onChange={() => handleOptionSelect(option)}
                 />
-                {option}
+               &nbsp;  {option}
               </label>
             </li>
           ))}
         </ol>
+
         <div className="button-groupquiz">
           <Button
             variant="contained"

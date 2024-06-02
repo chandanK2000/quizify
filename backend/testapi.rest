@@ -103,7 +103,7 @@ Content-Type: application/json
 
 {
   "subjectName": "javascript",
-  "quizSet": "set2",
+  "quizSet": "set3",
   "question": "Which CSS property is used to align text?",
   "options": [
     "text-align",
@@ -118,7 +118,7 @@ Content-Type: application/json
 //get questions
 
 ###
-GET http://localhost:4000/api/questions/javascript/set2
+GET http://localhost:4000/api/questions/html/set1
 
 
 # GET http://localhost:4000/api/questions/:subjectName/:quizSet

@@ -9,7 +9,7 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
 
   useEffect(() => {
     // Get user data from localStorage
-    const storedUserData = localStorage.getItem('userData');
+    const storedUserData = sessionStorage.getItem('userData');
     console.log(storedUserData);
     if (storedUserData) {
       setUserData(JSON.parse(storedUserData));

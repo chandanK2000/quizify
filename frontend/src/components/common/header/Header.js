@@ -84,7 +84,7 @@ const Header = () => {
 
   useEffect(() => {
     // Get user data from localStorage
-    const storedUserData = localStorage.getItem('userData');
+    const storedUserData = sessionStorage.getItem('userData');
     console.log(storedUserData);
     if (storedUserData) {
       setUserData(JSON.parse(storedUserData));
@@ -96,7 +96,7 @@ const Header = () => {
     const confirmed = window.confirm('Are you sure you want to log out ?');
 
     if (confirmed) {
-      localStorage.removeItem('userData');
+      sessionStorage.removeItem('userData');
       setUserData(null);
       window.location.reload();
     }
