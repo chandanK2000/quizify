@@ -3,10 +3,10 @@ POST http://localhost:4000/api/users/register
 Content-Type: application/json
 
 {
-  "name": "raybahadur",
-  "email": "raybahadur@example.com",
-  "password": "raybahadur",
-  "confirmPassword": "raybahadur",
+  "name": "sanju",
+  "email": "sanju@example.com",
+  "password": "sanju",
+  "confirmPassword": "sanju",
   "mobile": "1234567890"
 }
 
@@ -26,8 +26,8 @@ POST http://localhost:4000/api/users/login
 Content-Type: application/json
 
 {
-  "email": "raybahadur@example.com",
-  "password": "raybahadur"
+  "email": "sanju@example.com",
+  "password": "sanju"
 }
 
 
@@ -118,26 +118,52 @@ Content-Type: application/json
 //get questions
 
 ###
-GET http://localhost:4000/api/questions/html/set1
+GET http://localhost:4000/api/questions/html/set2
 
 
 # GET http://localhost:4000/api/questions/:subjectName/:quizSet
 
-
-### Save Quiz History
-POST http://localhost:4000/api/results
+### Save Quiz Result
+POST http://localhost:4000/api/quizResults
 Content-Type: application/json
 
 {
-  "userId": "665c359b4670ea86eed99b58",
+  "userId": "665e3a933be96e9d9b926d74",
   "subjectName": "css",
-  "quizSet": "Set 1",
+  "quizSet": "set3",
   "totalQuestions": 10,
-  "correctAnswers": 8,
   "wrongAnswers": 2,
+  "correctAnswers": 8,
+  "resultMessage": "Good job!",
   "percentageScore": 80,
-  "resultMessage": "Great job!",
-  "dateTime": "2023-06-02T12:00:00Z",
+  "dateTime": "2024-06-03T10:00:00Z",
   "name": "John Doe",
-  "email": "john.doe@example.com"
+  "email": "johndoe@example.com"
 }
+
+###
+GET http://localhost:4000/api/quizResults
+
+###
+GET http://localhost:4000/api/quizResults/html/Set1
+
+
+# Get All Quiz Results for a User
+###
+2GET http://localhost:4000/api/quizResults?userId=665e3a933be96e9d9b926d74
+
+
+#Get Quiz Results by Subject and Set for a User
+###
+http://localhost:4000/api/quizResults/css/set3?userId=665e3a933be96e9d9b926d74
+
+###
+DELETE http://localhost:4000/api/quizResults
+Content-Type: application/json
+
+{
+    "userId": "665e3a933be96e9d9b926d74",
+    "subjectName": "css",
+    "quizSet": "set3"
+}
+

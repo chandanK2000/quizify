@@ -2,7 +2,6 @@ const QuizResult = require('../models/QuizResult');
 
 exports.saveQuizResult = async (req, res) => {
   try {
-    // Extract data from request body
     const {
       userId,
       subjectName,
@@ -17,7 +16,6 @@ exports.saveQuizResult = async (req, res) => {
       email
     } = req.body;
 
-    // Create a new QuizResult instance
     const quizResult = new QuizResult({
       userId,
       subjectName,
@@ -32,22 +30,79 @@ exports.saveQuizResult = async (req, res) => {
       email
     });
 
-    // Log the received data
     console.log('Received data:', req.body);
+    // console.log(quizResult);
 
-    // Save the quiz result to the database
     await quizResult.save();
 
-    // Log the saved quiz result
     console.log('Quiz result saved successfully:', quizResult);
 
-    // Respond with success message
-    res.status(201).json({ message: 'Quiz result saved successfully.' });
-  } catch (error) {
-    // Log detailed error message
-    console.error('Error saving quiz result:', error);
+    res.status(201).json({
+      message: `Quiz result for ${subjectName} (${quizSet}) saved successfully.`
+    });
 
-    // Respond with error message
+  } catch (error) {
+    console.error('Error saving quiz result:', error);
     res.status(500).json({ message: 'Internal server error. Failed to save quiz result.' });
+  }
+};
+
+exports.getQuizResults = async (req, res) => {
+  try {
+    const { userId } = req.query;  // Get userId from query parameters
+
+    const quizResults = await QuizResult.find({ userId });
+
+    if (quizResults.length === 0) {
+      return res.status(404).json({ message: 'No quiz results found for the specified user.' });
+    }
+
+    res.status(200).json(quizResults);
+  } catch (error) {
+    console.error('Error fetching quiz results:', error);
+    res.status(500).json({ message: 'Internal server error. Failed to fetch quiz results.' });
+  }
+};
+
+exports.getQuizResultsBySubjectAndSet = async (req, res) => {
+  try {
+    let { subjectName, quizSet } = req.params;
+    const { userId } = req.query;  // Get userId from query parameters
+
+    // Convert subjectName and quizSet to lowercase for case-insensitive comparison
+    subjectName = subjectName.toLowerCase();
+    quizSet = quizSet.toLowerCase();
+
+    const quizResults = await QuizResult.find({
+      userId,  // Filter by userId
+      subjectName: { $regex: new RegExp(subjectName, 'i') },
+      quizSet: { $regex: new RegExp(quizSet, 'i') }
+    });
+
+    if (quizResults.length === 0) {
+      return res.status(404).json({ message: `No quiz results found for ${subjectName} - Set ${quizSet} for the specified user.` });
+    }
+
+    res.status(200).json(quizResults);
+  } catch (error) {
+    console.error('Error fetching quiz results by subject and set:', error);
+    res.status(500).json({ message: 'Internal server error. Failed to fetch quiz results.' });
+  }
+};
+
+
+
+//for delete  quiz history 
+exports.deleteQuizResult = async (req, res) => {
+  try {
+    const { userId, subjectName, quizSet } = req.query;
+
+    // Delete quiz result based on userId, subjectName, and quizSet
+    await QuizResult.deleteOne({ userId, subjectName, quizSet });
+
+    res.status(200).json({ message: 'Quiz result deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting quiz result:', error);
+    res.status(500).json({ message: 'Internal server error. Failed to delete quiz result.' });
   }
 };

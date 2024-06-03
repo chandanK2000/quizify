@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './QuizResult.css';
+import {useParams} from "react-router-dom";
 import { FaRedo, FaDownload, FaLaugh, FaEye, FaEyeSlash, FaCheckCircle, FaTimesCircle, FaSave } from 'react-icons/fa';
 import {Button } from '@mui/material';
 import { toast } from 'react-toastify';
+
 const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
   const [showReview, setShowReview] = useState(true);
   const [userData, setUserData] = useState(null);
+  const { subjectName, quizSet } = useParams();
+
+  useEffect(() => {
+    console.log("Subject Name:", subjectName);
+    console.log("Set:", quizSet);
+    // alert(`Set: ${quizSet}`);
+  }, [subjectName, quizSet]);
+
 
   useEffect(() => {
     // Get user data from localStorage
@@ -15,6 +25,8 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
       setUserData(JSON.parse(storedUserData));
     }
   }, []);
+
+  
 
   const toggleReview = () => {
     setShowReview(!showReview);
@@ -80,27 +92,34 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
   //   alert(historyData);
   // };
   // Function to save the quiz history
+  // Function to save the quiz history
   const saveHistory = async () => {
     const dateTime = new Date().toLocaleString();
+    const resultMessage = getResultMessage(percentageScore); // Calculate result message
     const historyData = {
+      subjectName,
+      quizSet,
       totalQuestions,
       correctAnswers: score,
       wrongAnswers,
       percentageScore: percentageScore.toFixed(2),
-      result: getResultMessage(percentageScore),
+      result: resultMessage,
+      resultMessage: resultMessage, 
       dateTime,
       name: userData ? userData.name : "Unknown",
-      email: userData ? userData.email : "Unknown"
+      email: userData ? userData.email : "Unknown",
+      userId: userData ? userData.userId : "Unknown",
     };
 
     try {
-      const response = await fetch('http://localhost:4000/api/save-history', {
+      const response = await fetch('http://localhost:4000/api/quizResults', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(historyData)
       });
+
       if (!response.ok) {
         throw new Error('Failed to save quiz history');
       }
@@ -110,6 +129,7 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
       alert('Failed to save quiz history. Please try again later.');
     }
   };
+
 
 
   return (
@@ -135,6 +155,8 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
       </div>
       <div className='result_block'>
         <h2 className='text-info'> Quiz Completed !<FaLaugh /></h2>
+        <p>Subject: {subjectName}</p>
+        <p>Set: {quizSet}</p>
         <p>Total Questions: {totalQuestions}</p>
         <p>Correct Answers: {score} ({correctPercentage.toFixed(2)}%)</p>
         <p>Wrong Answers: {wrongAnswers} ({wrongPercentage.toFixed(2)}%)</p>

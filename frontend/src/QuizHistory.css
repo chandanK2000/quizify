@@ -1,45 +1,43 @@
 .quiz-history-container {
-  width: 100%;
-  margin: auto;
-  padding: 20px;
-  background-color: #ecc8c8;
+  margin: 20px 40px;
 }
-
 .quiz-history-container h2{
   text-align: center;
-  color: #250202;
-}
-
-.quiz-history-list {
-  margin-top: 20px;
+  margin: 40px 0px;
+  color: #ee9b9b;
+ 
 }
 
 .history-item {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border:none;
+  outline: none;
+  padding: 10px 20px;
   margin-bottom: 10px;
-}
-
-.history-item div {
-  margin-bottom: 5px;
-}
-
-.delete-btn {
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  box-sizing: border-box;
+  border-radius: 4px;
   cursor: pointer;
+  background-color: #eee9e9;
+}
+.history-item p {
+  margin: 5px 10px;
+}
+.history-item div {
+  border-left: 2px dashed gray !important;
+ 
 }
 
-.delete-btn:hover {
-  background-color: #c82333;
+.history-item div:last-child{
+text-align: center;
 }
 
-@media screen and (max-width: 768px) {
-  .quiz-history-container {
-    width: 90%;
+@media (max-width: 480px) {
+  .history-item {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
   }
 }

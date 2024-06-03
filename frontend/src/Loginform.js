@@ -89,7 +89,7 @@ const Loginform = ({ onRegisterLinkClick }) => {
         console.log(userData);
         // alert(userData.name);
         // alert(userData.userId);
-        alert(userData.token);
+        // alert(userData.token);
          window.location.reload();// to reload the page
         sessionStorage.setItem('userData', JSON.stringify(userData));
 

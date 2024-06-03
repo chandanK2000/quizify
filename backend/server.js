@@ -1,4 +1,3 @@
-// app.js (or your main file)
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -31,7 +30,7 @@ mongoose.connect(DB, {
 
 app.use('/api/questions', questionRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/quizResults', quizResultRoutes);
+app.use('/api/quizResults', quizResultRoutes); // Ensure this route is included
 
 const adminRoutes = require('./routes/adminRoutes');
 app.use('/api/admin', adminRoutes);

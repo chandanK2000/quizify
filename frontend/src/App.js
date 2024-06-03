@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/common/header/Header';
@@ -37,8 +36,7 @@ function App() {
           <Route exact path="/about" element={<About />} />
           <Route exact path="/free-quizzes/:subjectName" element={<QuizSet />} />
           <Route exact path="/free-quizzes/:subjectName/set/:quizSet" element={<QuizSetDetails />} />
-            <Route path="/quiz-history/:subjectName/set/:set" element={<QuizHistory />} />
-
+          <Route path="/quiz-history/:subjectName/set/:quizSet" element={<QuizHistory />} /> {/* Use :quizSet */}
         </Routes>
       )}
       <ScrollToTopButton />

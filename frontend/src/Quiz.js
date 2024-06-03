@@ -18,7 +18,7 @@ const Quiz = ({ subjectName, quizSet }) => {
   const [agreeChecked, setAgreeChecked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [timer, setTimer] = useState(600); // 1 minute in seconds
+  const [timer, setTimer] = useState(60); // 1 minute in seconds
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
 
   const notificationAudio = new Audio('http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg');
@@ -118,7 +118,7 @@ const Quiz = ({ subjectName, quizSet }) => {
     setScore(0);
     setQuizCompleted(false);
     setQuizStarted(true);
-    setTimer(600); // Reset timer to 1 minute
+    setTimer(60); // Reset timer to 1 minute
   };
 
   const startQuiz = () => {
