@@ -7,6 +7,12 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from 'react-modal';
 import { Button } from '@mui/material';
+import Founder from './components/common/Home/Founder';
+import OurHappyLearners from './components/common/Home/OurHappyLearners';
+import InfocampusTrainingCenter from './components/common/Home/InfocampusTrainingCenter';
+import Placements from './components/common/Home/Placements';
+import Infocourses from './components/common/Home/Infocourses';
+import AllCourses from './components/common/Home/AllCourses';
 
 const Quiz = ({ subjectName, quizSet }) => {
   const [questions, setQuestions] = useState([]);
@@ -166,6 +172,17 @@ const Quiz = ({ subjectName, quizSet }) => {
                 <li>Read each question carefully before selecting your answer.</li>
                 <li>Answer all questions to the best of your ability.</li>
                 <li>Make sure to review your answers before submitting the quiz.</li>
+                <li>After submission, a toast message will prompt you to confirm if you want to submit the test.</li>
+                <li>If you confirm, the test will be submitted, and a success message will be displayed along with a notification bell sound.</li>
+                
+
+              </ul>
+              <ul>
+                <li>The timer starts once you begin the quiz. Each quiz set consists of 10 questions, and you have 5 minutes to complete it.</li>
+                <li>You can submit the test manually at any time during the quiz.</li>
+                <li>If you do not submit the test manually, it will be automatically submitted after the given quiz period.</li>
+                <li>Remember, do not refresh the page or quit the quiz in between. If you quit, you will be logged out automatically.</li>
+                <li>After submission, you can add the quiz history by clicking the "Add History" button.</li>
               </ul>
             </div>
           </div>
@@ -218,7 +235,7 @@ const Quiz = ({ subjectName, quizSet }) => {
         className="palette-modal"
         overlayClassName="palette-overlay"
       >
-        <Button onClick={closePalette} className="close-button"  variant='contained'>X</Button>
+        <Button onClick={closePalette} className="close-button" variant='contained'>X</Button>
 
         <h3 className="headingpalatte">Question Palette</h3>
         <div className="palette-questions">
@@ -232,6 +249,9 @@ const Quiz = ({ subjectName, quizSet }) => {
           ))}
         </div>
       </Modal>
+      <OurHappyLearners />
+      <Infocourses />
+      <AllCourses />
     </div>
   );
 };

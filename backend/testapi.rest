@@ -3,10 +3,10 @@ POST http://localhost:4000/api/users/register
 Content-Type: application/json
 
 {
-  "name": "sanju",
-  "email": "sanju@example.com",
-  "password": "sanju",
-  "confirmPassword": "sanju",
+  "name": "siyaramsir",
+  "email": "siyaramsir@example.com",
+  "password": "siyaramsir",
+  "confirmPassword": "siyaramsir",
   "mobile": "1234567890"
 }
 
@@ -26,8 +26,8 @@ POST http://localhost:4000/api/users/login
 Content-Type: application/json
 
 {
-  "email": "sanju@example.com",
-  "password": "sanju"
+  "email": "siyaramsir@example.com",
+  "password": "siyaramsir"
 }
 
 
@@ -128,7 +128,7 @@ POST http://localhost:4000/api/quizResults
 Content-Type: application/json
 
 {
-  "userId": "665e3a933be96e9d9b926d74",
+  "userId": "665f4f1f9e43e4eb8ea52551",
   "subjectName": "css",
   "quizSet": "set3",
   "totalQuestions": 10,
@@ -150,20 +150,17 @@ GET http://localhost:4000/api/quizResults/html/Set1
 
 # Get All Quiz Results for a User
 ###
-2GET http://localhost:4000/api/quizResults?userId=665e3a933be96e9d9b926d74
+2GET http://localhost:4000/api/quizResults?userId=665f4f1f9e43e4eb8ea52551
 
 
 #Get Quiz Results by Subject and Set for a User
 ###
-http://localhost:4000/api/quizResults/css/set3?userId=665e3a933be96e9d9b926d74
+http://localhost:4000/api/quizResults/html/set1?userId=665f4f1f9e43e4eb8ea52551
 
+
+
+//for the delete quiz history sir
+// http://localhost:3000/quiz-results?userId=123&subjectName=math&quizSet=set1
 ###
-DELETE http://localhost:4000/api/quizResults
-Content-Type: application/json
-
-{
-    "userId": "665e3a933be96e9d9b926d74",
-    "subjectName": "css",
-    "quizSet": "set3"
-}
+DELETE http://localhost:4000/api/quizResults?userId=665f4f1f9e43e4eb8ea52551&subjectName=html&quizSet=set1
 

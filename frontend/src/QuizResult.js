@@ -9,7 +9,11 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
   const [showReview, setShowReview] = useState(true);
   const [userData, setUserData] = useState(null);
   const { subjectName, quizSet } = useParams();
+  const [showResultBlock, setShowResultBlock] = useState(true); 
 
+  const toggleResultBlock = () => {
+    setShowResultBlock(!showResultBlock);
+  };
   useEffect(() => {
     console.log("Subject Name:", subjectName);
     console.log("Set:", quizSet);
@@ -155,23 +159,32 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
       </div>
       <div className='result_block'>
         <h2 className='text-info'> Quiz Completed !<FaLaugh /></h2>
-        <p>Subject: {subjectName}</p>
-        <p>Set: {quizSet}</p>
-        <p>Total Questions: {totalQuestions}</p>
-        <p>Correct Answers: {score} ({correctPercentage.toFixed(2)}%)</p>
-        <p>Wrong Answers: {wrongAnswers} ({wrongPercentage.toFixed(2)}%)</p>
-        <p>Percentage Score: {percentageScore.toFixed(2)}%</p>
-        <p>{getResultMessage(percentageScore)}</p>
-        <p>Date and Time: {new Date().toLocaleString()}</p>
-        <p>Name: {userData ? userData.name : "Unknown"}</p>
-        <p>Email: {userData ? userData.email : "Unknown"}</p>
-        <div>
+        <div className="buttons">
           <button className="btn btn-success m-2" onClick={restartQuiz}><FaRedo /> Restart Quiz</button>
           <button className="btn btn-success m-2" onClick={downloadResult}><FaDownload /> Download Result</button>
-          <Button variant="contained"  onClick={saveHistory}><FaSave /> Save History</Button>
-
-
+          <Button variant="contained" onClick={saveHistory}><FaSave /> Save History</Button>
+          <Button variant="contained" onClick={toggleResultBlock}>
+              {showResultBlock ?  <> <FaEyeSlash />  Hide Result</> : <> <FaEye />  Show Result</>}
+          </Button>
         </div>
+
+        {showResultBlock && (
+          <div className='resultblock'>
+            <div>
+              <p>Subject: {subjectName}</p>
+              <p>Set: {quizSet}</p>
+              <p>Total Questions: {totalQuestions}</p>
+              <p>Correct Answers: {score} ({correctPercentage.toFixed(2)}%)</p>
+              <p>Wrong Answers: {wrongAnswers} ({wrongPercentage.toFixed(2)}%)</p>
+            </div>
+            <div>
+              <p>Date and Time: {new Date().toLocaleString()}</p>
+              <p>Name: {userData ? userData.name : "Unknown"}</p>
+              <p>Email: {userData ? userData.email : "Unknown"}</p>
+              <p>Percentage Score: {percentageScore.toFixed(2)}%</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

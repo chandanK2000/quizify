@@ -4,8 +4,9 @@
 .quiz-history-container h2{
   text-align: center;
   margin: 40px 0px;
-  color: #ee9b9b;
- 
+  color: #535252;
+   text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+
 }
 
 .history-item {
@@ -15,11 +16,16 @@
   border:none;
   outline: none;
   padding: 10px 20px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   box-sizing: border-box;
   border-radius: 4px;
   cursor: pointer;
   background-color: #eee9e9;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+  transition: all 0.5s ease-in;
+}
+.history-item:hover {
+  opacity: 0.8;
 }
 .history-item p {
   margin: 5px 10px;

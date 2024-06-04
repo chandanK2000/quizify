@@ -92,13 +92,17 @@ exports.getQuizResultsBySubjectAndSet = async (req, res) => {
 
 
 
-//for delete  quiz history 
+//for delete quiz history 
 exports.deleteQuizResult = async (req, res) => {
   try {
-    const { userId, subjectName, quizSet } = req.query;
+    const { userId, subjectName, quizSet, _id } = req.query;
 
-    // Delete quiz result based on userId, subjectName, and quizSet
-    await QuizResult.deleteOne({ userId, subjectName, quizSet });
+    // Delete quiz result based on userId, subjectName, quizSet, and _id
+    const result = await QuizResult.deleteOne({ _id, userId, subjectName, quizSet });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: 'Quiz result not found or already deleted.' });
+    }
 
     res.status(200).json({ message: 'Quiz result deleted successfully.' });
   } catch (error) {

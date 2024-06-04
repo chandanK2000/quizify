@@ -108,7 +108,7 @@ const Header = () => {
     { icon: <FaBell />, link: '#' },
     { icon: <FaAdjust />, link: '#' },
     {
-      icon: <FaCog onClick={toggleEditProfileModal} />, // Updated icon with onClick event
+      icon: <FaCog onClick={toggleEditProfileModal} />, 
       link: '#',
     },
     {
@@ -290,7 +290,7 @@ const Header = () => {
                 <hr className="custom-hr" />
               </div>
             </li>
-            <li>
+            {/* <li>
               <form className="form-inline m-2 my-lg-0 header">
                 <input
                   className="form-control mr-sm-2"
@@ -299,7 +299,7 @@ const Header = () => {
                   aria-label="Search"
                 />
               </form>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
