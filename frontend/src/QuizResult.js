@@ -162,9 +162,9 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
         <div className="buttons">
           <button className="btn btn-success m-2" onClick={restartQuiz}><FaRedo /> Restart Quiz</button>
           <button className="btn btn-success m-2" onClick={downloadResult}><FaDownload /> Download Result</button>
-          <Button variant="contained" onClick={saveHistory}><FaSave /> Save History</Button>
+          <Button variant="contained" onClick={saveHistory}> <FaSave />  Save History </Button>
           <Button variant="contained" onClick={toggleResultBlock}>
-              {showResultBlock ?  <> <FaEyeSlash />  Hide Result</> : <> <FaEye />  Show Result</>}
+              {showResultBlock ?  <> <FaEyeSlash />  Hide Result </> : <> <FaEye />  Show Result </>}
           </Button>
         </div>
 

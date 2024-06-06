@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaAdjust, FaLanguage, FaExpand, FaBell, FaSignInAlt, FaUserPlus, FaCog, FaSignOutAlt,  } from 'react-icons/fa';
 import { FiEdit } from 'react-icons/fi'; 
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
 import './Header.css';
 import { Modal } from 'react-bootstrap';
@@ -92,16 +94,38 @@ const Header = () => {
   }, []);
 
 
-  const handleLogout = () => {
-    const confirmed = window.confirm('Are you sure you want to log out ?');
+  // const handleLogout = () => {
+  //   const confirmed = window.confirm('Are you sure you want to log out ?');
 
-    if (confirmed) {
-      sessionStorage.removeItem('userData');
-      setUserData(null);
-      window.location.reload();
-    }
+  //   if (confirmed) {
+  //     sessionStorage.removeItem('userData');
+  //     setUserData(null);
+  //     window.location.reload();
+  //   }
     
+  // };
+
+  const handleLogout = () => {
+    confirmAlert({
+      title: 'Confirm Logout',
+      message: 'Are you sure you want to log out?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            sessionStorage.removeItem('userData');
+            setUserData(null);
+            window.location.reload();
+          }
+        },
+        {
+          label: 'No',
+          onClick: () => { }
+        }
+      ]
+    });
   };
+
 
  
   const iconData = [
@@ -261,34 +285,39 @@ const Header = () => {
                   {freeResources.map((resource, index) => (
                     <div className="col-md-6" key={index}>
                       <h6>{resource.category}</h6>
-                      <div className="row">
-                        {resource.subcategories.map((subcategory, subIndex) => (
-                          <div className="col-md-6" key={subIndex}>
-                            <ul className="list-unstyled">
-                              {subcategory.map((item, itemIndex) => (
-                                item.link.startsWith('/') ? (
-                                  <li key={itemIndex}>
+                      {resource.subcategories.map((subcategory, subIndex) => (
+                        <div className="row" key={subIndex}>
+                          {subcategory.map((item, itemIndex) => (
+                            <div className="col-md-4 p-0" key={itemIndex}>
+                              <ul className="list-unstyled">
+                              {item.link.startsWith('/') ? (
+                                <li>
                                     <Link className="dropdown-item" to={item.link}>
                                       {item.name}
                                     </Link>
-                                  </li>
-                                ) : (
-                                  <li key={itemIndex}>
-                                    <a className="dropdown-item" href={item.link}>
-                                      {item.name}
-                                    </a>
-                                  </li>
-                                )
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
+                                </li>
+                               
+                              ) : (
+                                 <li>
+                                      <Link className="dropdown-item" to={`/interview/${item.name.toLowerCase()}`}>
+                                        {item.name}
+                                      </Link>
+                                </li>
+                               
+                              )}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      ))}
                     </div>
                   ))}
                 </div>
                 <hr className="custom-hr" />
               </div>
+
+
+
             </li>
             {/* <li>
               <form className="form-inline m-2 my-lg-0 header">

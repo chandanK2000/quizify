@@ -6,8 +6,11 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  address: { type: String},
-  mobile: { type: String, required: true },
+  address: { type: String },
+  mobile: { type: String, required: true, unique: true },
+  gender: { type: String },
+  state: { type: String },
+  profession: { type: String },
   image: { type: String }, // Path to the uploaded image
   bio: { type: String }
 });

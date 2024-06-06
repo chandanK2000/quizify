@@ -238,3 +238,61 @@
     margin-bottom: 10px;
   }
 }
+
+
+/* // for the confirm alert  */
+/* Custom styles for confirmation dialog */
+.react-confirm-alert-overlay {
+  background-color: rgba(0, 0, 0, 0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ border-radius: 10px;
+}
+
+.react-confirm-alert {
+  background-color: #fff; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); 
+   border-radius: 20px 0px 20px 0px;
+}
+
+.react-confirm-alert-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: #333; 
+  margin-bottom: 10px;
+}
+
+.react-confirm-alert-message {
+  font-size: 16px;
+  color: #333; 
+  margin-bottom: 20px;
+}
+
+.react-confirm-alert-button-group {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.react-confirm-alert-button {
+  padding: 8px 16px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.react-confirm-alert-button.yes {
+  background-color: #007bff !important; 
+  color: #fff; 
+}
+
+.react-confirm-alert-button.no {
+  background-color: #eee;
+  color: #333;
+}
+
+.react-confirm-alert-button:hover {
+  opacity: 0.8;
+}

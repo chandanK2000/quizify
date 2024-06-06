@@ -26,6 +26,12 @@
 .quizcontainers .instructions ul li {
   margin-bottom: 10px;
 }
+.timer-container span{
+  color: rgb(161, 158, 152);
+  font-weight: 500;
+  font-style: italic;
+  margin: 10px 0px;
+}
 
 .agree-checkbox {
   margin-top: 20px;
@@ -38,7 +44,7 @@
   margin: 4px;
 }
 
-.timer-container{
+.timer-container {
   margin-left: 100px;
 }
 .palette-button {
@@ -84,7 +90,7 @@
   border-radius: 4px;
 }
 
-.headingpalatte{
+.headingpalatte {
   font-size: 25px;
   color: #c9b7f3;
   text-shadow: none;
@@ -93,8 +99,8 @@
 .palette-questions {
   margin-top: 20px;
   display: flex;
-  justify-content:flex-start;
-width: 320px;;
+  justify-content: flex-start;
+  width: 320px;
   flex-wrap: wrap;
 }
 
@@ -105,13 +111,13 @@ width: 320px;;
   background-color: #ccc;
   padding: 4px;
   border: none;
-  border-radius: 4px;
+  border-radius: 0px 10px 0px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-    margin: 3px 2px;
+  margin: 3px 2px;
 }
 
-.palette-question.blankfill{
+.palette-question.blankfill {
   background-color: red !important;
 }

@@ -7,12 +7,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from 'react-modal';
 import { Button } from '@mui/material';
-import Founder from './components/common/Home/Founder';
-import OurHappyLearners from './components/common/Home/OurHappyLearners';
-import InfocampusTrainingCenter from './components/common/Home/InfocampusTrainingCenter';
-import Placements from './components/common/Home/Placements';
-import Infocourses from './components/common/Home/Infocourses';
-import AllCourses from './components/common/Home/AllCourses';
 
 const Quiz = ({ subjectName, quizSet }) => {
   const [questions, setQuestions] = useState([]);
@@ -108,8 +102,8 @@ const Quiz = ({ subjectName, quizSet }) => {
       }, 0);
       setScore(finalScore);
       setQuizCompleted(true);
-      toast.success('Quiz completed successfully!'); // Display toast message
-      notificationAudio.play(); // Play notification sound after submitting quiz
+      toast.success('Quiz completed successfully!');
+      notificationAudio.play(); 
       setTimeout(() => {
         notificationAudio.pause();
       }, 3000);
@@ -204,7 +198,7 @@ const Quiz = ({ subjectName, quizSet }) => {
       {quizStarted && !quizCompleted && !loading && questions.length > 0 && (
         <div>
           <div className="timer-container">
-            <div>Time Remaining: {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</div>
+            <div><span>Time Remaining:</span> {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</div>
             <button className="btn btn-secondary palette-button" onClick={openPalette}>
               Show Palette
             </button>
@@ -249,9 +243,7 @@ const Quiz = ({ subjectName, quizSet }) => {
           ))}
         </div>
       </Modal>
-      <OurHappyLearners />
-      <Infocourses />
-      <AllCourses />
+    
     </div>
   );
 };

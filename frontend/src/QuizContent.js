@@ -2,6 +2,7 @@ import React from 'react';
 import { Stepper, Step, StepLabel, Button } from '@mui/material';
 import { FaChevronLeft, FaChevronRight, FaCheck } from 'react-icons/fa';
 import './QuizContents.css';
+
 const QuizContent = ({
   questions,
   currentQuestionIndex,
@@ -22,7 +23,7 @@ const QuizContent = ({
         </div>
         <ol>
           {currentQuestion.options.map((option, index) => (
-            <li key={index}>
+            <li key={index} onClick={() => handleOptionSelect(option)}>
               <label>
                 {String.fromCharCode(65 + index)}-
                 <input
@@ -32,7 +33,7 @@ const QuizContent = ({
                   checked={selectedOption === option}
                   onChange={() => handleOptionSelect(option)}
                 />
-               &nbsp;  {option}
+                &nbsp;  {option}
               </label>
             </li>
           ))}
@@ -50,7 +51,7 @@ const QuizContent = ({
           </Button>
           <Button
             variant="contained"
-            color="warning" 
+            color="warning"
             onClick={handleSubmit}
           >
             <FaCheck />    Submit
@@ -70,7 +71,7 @@ const QuizContent = ({
         <Stepper activeStep={currentQuestionIndex} orientation="vertical">
           {questions.map((question, index) => (
             <Step key={index}>
-              <StepLabel>{`--Question -${index + 1}`}</StepLabel>
+              <StepLabel >{`--Question -${index + 1}`}</StepLabel>
             </Step>
           ))}
         </Stepper>

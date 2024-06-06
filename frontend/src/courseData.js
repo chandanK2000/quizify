@@ -87,7 +87,6 @@ export const onlineCourses = [
     ]
   }
 ];
-
 export const freeResources = [
   {
     category: "Free Quizzes",
@@ -96,10 +95,23 @@ export const freeResources = [
         { name: "HTML Quiz", link: "/free-quizzes/html" },
         { name: "CSS Quiz", link: "/free-quizzes/css" },
         { name: "JavaScript Quiz", link: "/free-quizzes/javascript" },
-        { name: "Reactjs Quiz", link: "/free-quizzes/react" },
-        { name: "Bootstrap", link: "/free-quizzes/bootstrap" },
-        
-       
+        // { name: "Reactjs Quiz", link: "/free-quizzes/react" },
+        // { name: "Bootstrap", link: "/free-quizzes/bootstrap" },
+        // { name: "Anjular", link: "/free-quizzes/anjular" },
+      ]
+    ]
+  },
+  {
+    category: "Interview Section",
+    subcategories: [
+      [
+        { name: "HTML", link: "/interviews/html" },
+        { name: "CSS", link: "/interviews/css" },
+        { name: "Javascript", link: "/interviews/javascript" },
+        { name: "Bootstrap", link: "/interviews/bootstrap" },
+        { name: "Reactjs", link: "/interviews/react" },
+        { name: "Anjular", link: "/interviews/anjular" },
+
       ]
     ]
   }

@@ -13,6 +13,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import QuizSet from './QuizSet';
 import QuizSetDetails from './QuizSetDetails';
 import QuizHistory from './QuizHistory';
+import InterviewPage from './InterviewPage';
+import OurHappyLearners from './components/common/Home/OurHappyLearners';
+import Placements from './components/common/Home/Placements';
+import Infocourses from './components/common/Home/Infocourses';
+import AllCourses from './components/common/Home/AllCourses';
+import WhatsAppButton from './WhatsAppButton';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -37,12 +43,19 @@ function App() {
           <Route exact path="/free-quizzes/:subjectName" element={<QuizSet />} />
           <Route exact path="/free-quizzes/:subjectName/set/:quizSet" element={<QuizSetDetails />} />
           <Route path="/quiz-history/:subjectName/set/:quizSet" element={<QuizHistory />} /> {/* Use :quizSet */}
+            <Route exact path="/interviews/:subject" element={<InterviewPage />} />
+
         </Routes>
       )}
       <ScrollToTopButton />
+      <OurHappyLearners />
+      <Placements />
+      <Infocourses />
+      <AllCourses/>
       <Footer />
       <ScrollingLine />
       <ToastContainer />
+      <WhatsAppButton/>
     </Router>
   );
 }

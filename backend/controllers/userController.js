@@ -1,26 +1,13 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const multer = require('multer');
-const path = require('path');
-
-// Configure Multer for image upload
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
-});
-
-const upload = multer({ storage: storage });
+const upload = require('../config/multerConfig');
 const jwtSecret = process.env.JWT_SECRET;
 
 // Register a new user
 exports.registerUser = async (req, res) => {
   try {
-    const { name, email, password, confirmPassword, address, mobile } = req.body;
+    const { name, email, password, confirmPassword, mobile } = req.body;
     const image = req.file ? req.file.path : '';
 
     // Check if passwords match
@@ -33,10 +20,32 @@ exports.registerUser = async (req, res) => {
       return res.status(400).send('Email already exists');
     }
 
-    const newUser = new User({ name, email, password, address, mobile, image });
+    const newUser = new User({
+      name,
+      email,
+      password,
+      mobile,
+      address: '',    // Default value
+      gender: '',     // Default value
+      state: '',      // Default value
+      profession: '', // Default value
+      image,
+      bio: ''         // Default value
+    });
+
     await newUser.save();
     res.status(201).send(`${name} created successfully`);
   } catch (error) {
+    if (error.code === 11000) {
+      // Check which field caused the duplicate key error
+      const field = Object.keys(error.keyValue)[0];
+      if (field === 'email') {
+        return res.status(400).send('Email already exists');
+      }
+      if (field === 'mobile') {
+        return res.status(400).send('Mobile number already exists');
+      }
+    }
     res.status(400).send('Error creating user: ' + error.message);
   }
 };
@@ -77,7 +86,6 @@ exports.loginUser = async (req, res) => {
     res.status(500).send('Error logging in: ' + error.message);
   }
 };
-
 
 // Get all users
 exports.getAllUsers = async (req, res) => {

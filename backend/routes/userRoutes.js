@@ -1,4 +1,3 @@
-// routes/userRoutes.js
 const express = require('express');
 const userController = require('../controllers/userController');
 
@@ -10,5 +9,8 @@ router.post('/login', userController.loginUser);
 router.get('/', userController.getAllUsers);
 router.delete('/:id', userController.deleteUser);
 router.put('/:id', userController.uploadProfileImage, userController.updateUserDetails);
+
+
+
 
 module.exports = router;
