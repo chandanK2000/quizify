@@ -9,6 +9,7 @@ const questionRoutes = require('./routes/questionRoutes');
 const quizResultRoutes = require('./routes/quizResultRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const interviewRoutes = require('./routes/interviewRoutes');
+const bookingRoutes = require('./routes/Bookingroutes');
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -39,5 +40,6 @@ app.use('/api/questions', questionRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/quizResults', quizResultRoutes);
 app.use('/api/interviews', interviewRoutes);
+app.use('/api', bookingRoutes);
 
 app.use('/api/admin', adminRoutes);

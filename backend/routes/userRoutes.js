@@ -7,10 +7,9 @@ const router = express.Router();
 router.post('/register', userController.uploadProfileImage, userController.registerUser);
 router.post('/login', userController.loginUser);
 router.get('/', userController.getAllUsers);
+router.get('/:id', userController.getUserById);
+
 router.delete('/:id', userController.deleteUser);
-router.put('/:id', userController.uploadProfileImage, userController.updateUserDetails);
-
-
-
+router.put('/:id', userController.uploadProfileImage, userController.updateUserDetails); 
 
 module.exports = router;

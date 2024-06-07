@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   gender: { type: String },
   state: { type: String },
   profession: { type: String },
-  image: { type: String }, // Path to the uploaded image
+  image: { type: String }, 
   bio: { type: String }
 });
 

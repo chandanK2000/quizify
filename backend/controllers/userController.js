@@ -97,6 +97,21 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
+// Get a single user by ID
+exports.getUserById = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).send('Error fetching user: ' + error.message);
+  }
+};
+
+
 // Delete user
 exports.deleteUser = async (req, res) => {
   try {
@@ -116,8 +131,8 @@ exports.deleteUser = async (req, res) => {
 exports.updateUserDetails = async (req, res) => {
   try {
     const userId = req.params.id;
-    const { name, email, password, mobile, address, bio } = req.body;
-    const profileImage = req.file ? req.file.path : null;
+    const { name, email, password, mobile, address, gender, state, profession, bio } = req.body;
+    const profileImage = req.file ? req.file.path : null; // Get new image path if uploaded
 
     // Check if user exists
     const user = await User.findById(userId);
@@ -126,16 +141,19 @@ exports.updateUserDetails = async (req, res) => {
     }
 
     // Update user details
-    if (name) user.name = name;
-    if (email) user.email = email;
+    user.name = name || user.name;
+    user.email = email || user.email;
     if (password) {
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
     }
-    if (mobile) user.mobile = mobile;
-    if (profileImage) user.image = profileImage;
-    if (address) user.address = address;
-    if (bio) user.bio = bio;
+    user.mobile = mobile || user.mobile;
+    user.address = address || user.address;
+    user.gender = gender || user.gender;
+    user.state = state || user.state;
+    user.profession = profession || user.profession;
+    user.image = profileImage || user.image; // Update image field with new path if uploaded
+    user.bio = bio || user.bio;
 
     await user.save();
 

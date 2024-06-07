@@ -365,7 +365,7 @@ const Header = () => {
       </Modal>
 
       {/* Edit Profile modal */}
-      <Modal show={showEditProfileModal} onHide={toggleEditProfileModal}>
+      <Modal show={showEditProfileModal} onHide={toggleEditProfileModal} size="lg" >
         <Modal.Header closeButton>
           <Modal.Title className='text-warning'><FiEdit />  Edit Profile</Modal.Title>
         </Modal.Header>

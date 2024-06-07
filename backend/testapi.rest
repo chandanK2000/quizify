@@ -4,24 +4,22 @@ POST http://localhost:4000/api/users/register
 Content-Type: application/json
 
 {
-  "name": "amanbhai",
-  "email": "amanbhai@example.com",
-  "password": "amanbhai",
-  "confirmPassword": "amanbhai",
-  "mobile": "12345675890",
-   "image": "/uploads/newprofile.jpg",
-  "address": "punjab",
-  "bio": "he is a good boy",
-  "profession":"Developer",
-  "state":"Bihar",
-  "gender":"m"
-
- 
+  "name": "rajat",
+  "email": "rajat@example.com",
+  "password": "rajat",
+  "confirmPassword": "rajat",
+  "mobile": "12345675110"
+  
 }
 
 //this api is for all the users
 ###
 GET http://localhost:4000/api/users
+
+//get single user details
+#  http://localhost:4000/api/users/:id
+###
+GET http://localhost:4000/api/users/6662f27af64772a622320977
 
 
 //Delete user 
@@ -44,22 +42,23 @@ Content-Type: application/json
 
 # PUT /api/users/:id
 ###
-PUT http://localhost:4000/api/users/666014026d3259fbaefeb4b1
+PUT http://localhost:4000/api/users/6662d192cec8e526a638ee40
 Content-Type: application/json
 
 {
   "name": "amit yadav",
-  "email": "ray@example.com",
-  "password": "newpassword",
-  "mobile": "987654321",
+  "email": "rajatkumar@example.com",
+  "password": "ratanbhaifsf",
+  "mobile": "987654125",
   "image": "/uploads/newprofile.jpg",
   "address": "punjab",
   "bio": "he is a good boy",
   "profession":"Developer",
-  "state":"Bihar",
+  "state":"up",
   "gender":"m"
 
 }
+
 
 
 
@@ -221,3 +220,29 @@ Content-Type: application/json
 ###
 GET http://localhost:4000/api/interviews/css
 
+
+
+
+//demo booking
+###
+POST http://localhost:4000/api/bookings
+Content-Type: application/json
+
+{
+  "name": "roah Doe",
+  "email": "dfdsfs@example.com",
+  "mobile": "432453454",
+  "skillCenter": "Example Skill Center",
+  "course": "Example Course",
+  "type": "offline",
+  "message": "This is a test booking."
+}
+
+//get all book demo
+
+###
+Get  http://localhost:4000/api/bookings
+
+//get single
+###
+Get  http://localhost:4000/api/bookings/6662fdf7b9b35ec77840a532
