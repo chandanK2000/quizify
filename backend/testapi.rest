@@ -19,7 +19,7 @@ GET http://localhost:4000/api/users
 //get single user details
 #  http://localhost:4000/api/users/:id
 ###
-GET http://localhost:4000/api/users/6662f27af64772a622320977
+GET http://localhost:4000/api/users/66631f0601483abd1e7a3289
 
 
 //Delete user 
@@ -229,13 +229,13 @@ POST http://localhost:4000/api/bookings
 Content-Type: application/json
 
 {
-  "name": "roah Doe",
-  "email": "dfdsfs@example.com",
-  "mobile": "432453454",
+  "name": "rajesh Doe",
+  "email": "rajesh@example.com",
+  "mobile": "432453464",
   "skillCenter": "Example Skill Center",
-  "course": "Example Course",
-  "type": "offline",
-  "message": "This is a test booking."
+  "course": "mernstack Course",
+  "coursetype": "online",
+  "message": "This is also test booking."
 }
 
 //get all book demo
@@ -245,4 +245,15 @@ Get  http://localhost:4000/api/bookings
 
 //get single
 ###
-Get  http://localhost:4000/api/bookings/6662fdf7b9b35ec77840a532
+Get  http://localhost:4000/api/bookings/66630f023b84beb07c16d8a6
+
+
+//delete  all bookings
+###
+Delete  http://localhost:4000/api/bookings
+
+
+
+//delete single bookings
+###
+Delete  http://localhost:4000/api/bookings/66631289c834716eaf7eec57

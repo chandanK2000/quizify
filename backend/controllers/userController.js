@@ -143,10 +143,10 @@ exports.updateUserDetails = async (req, res) => {
     // Update user details
     user.name = name || user.name;
     user.email = email || user.email;
-    if (password) {
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(password, salt);
-    }
+    // if (password) {
+    //   const salt = await bcrypt.genSalt(10);
+    //   user.password = await bcrypt.hash(password, salt);
+    // }
     user.mobile = mobile || user.mobile;
     user.address = address || user.address;
     user.gender = gender || user.gender;

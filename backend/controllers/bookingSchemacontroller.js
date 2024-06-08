@@ -44,3 +44,32 @@ exports.getBookingById = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+
+exports.deleteAllBookings = async (req, res) => {
+  try {
+    await Booking.deleteMany({});
+    res.status(200).json({ message: 'All bookings deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting all bookings:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+exports.deleteBookingById = async (req, res) => {
+  try {
+    const bookingId = req.params.id;
+    console.log('Deleting booking with ID:', bookingId); // Log the ID being used for deletion
+    const booking = await Booking.findById(bookingId);
+    if (!booking) {
+      return res.status(404).json({ error: 'Booking not found' });
+    }
+    await booking.remove();
+    res.status(200).json({ message: 'Booking deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting booking:', error); // Log the error
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+

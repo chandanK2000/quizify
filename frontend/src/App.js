@@ -1,3 +1,4 @@
+// App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/common/header/Header';
@@ -19,6 +20,7 @@ import Placements from './components/common/Home/Placements';
 import Infocourses from './components/common/Home/Infocourses';
 import AllCourses from './components/common/Home/AllCourses';
 import WhatsAppButton from './WhatsAppButton';
+import CustomModal from './Modal';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -34,6 +36,7 @@ function App() {
   return (
     <Router>
       <Header />
+      <CustomModal /> 
       {loading ? (
         <div><Skeleton /></div>
       ) : (
@@ -42,20 +45,19 @@ function App() {
           <Route exact path="/about" element={<About />} />
           <Route exact path="/free-quizzes/:subjectName" element={<QuizSet />} />
           <Route exact path="/free-quizzes/:subjectName/set/:quizSet" element={<QuizSetDetails />} />
-          <Route path="/quiz-history/:subjectName/set/:quizSet" element={<QuizHistory />} /> {/* Use :quizSet */}
-            <Route exact path="/interviews/:subject" element={<InterviewPage />} />
-
+          <Route path="/quiz-history/:subjectName/set/:quizSet" element={<QuizHistory />} />
+          <Route exact path="/interviews/:subject" element={<InterviewPage />} />
         </Routes>
       )}
       <ScrollToTopButton />
       <OurHappyLearners />
       <Placements />
       <Infocourses />
-      <AllCourses/>
+      <AllCourses />
       <Footer />
       <ScrollingLine />
       <ToastContainer />
-      <WhatsAppButton/>
+      <WhatsAppButton />
     </Router>
   );
 }

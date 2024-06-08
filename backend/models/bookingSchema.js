@@ -6,7 +6,7 @@ const bookingSchema = new mongoose.Schema({
   mobile: { type: String, required: true },
   skillCenter: { type: String, required: true },
   course: { type: String, required: true },
-  type: { type: String, enum: ['online', 'offline'], required: true }, // Use lowercase enum values
+  coursetype: { type: String, required: true }, 
   message: { type: String }
 });
 

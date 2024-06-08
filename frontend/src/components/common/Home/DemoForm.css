@@ -21,33 +21,41 @@
   width: 100%;
   position: relative;
 }
-.demo-modal-content h2{
+.demo-modal-content h2 {
   color: rgb(194, 169, 169);
-  text-shadow: 2px 2px 4px rgba(130, 10, 230, 0.3); 
+  text-shadow: 2px 2px 4px rgba(130, 10, 230, 0.3);
 }
 
-.demo-close {
-  color: #e9dbdb;
-  font-size: 28px;
+.democlose {
+  border-radius: 50%;
+  background-color: rgb(196, 192, 187);
+  height: 34px;
+  width: 34px;
+  border: none;
+  outline: none;
+  font-size: 15px;
   font-weight: bold;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 4px;
+  padding: 8px;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  transition: all 0.5s ease;
 }
 
-.demo-close:hover,
-.demo-close:focus {
-  color: #cfc9c9;
-  text-decoration: none;
+.democlose:hover {
+  background-color: rgb(160, 156, 151);
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(130, 10, 230, 0.3);
 }
 
 .form-group label {
   font-weight: 500;
   color: #007bff;
 }
-.form-group textarea{
+.form-group textarea {
   resize: none;
 }
 
@@ -56,7 +64,12 @@
   background-color: #f7f7f7;
   border: 1px solid #ced4da;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  
+}
+.form-select {
+  border-radius: 0px;
+  background-color: #f7f7f7;
+  border: 1px solid #ced4da;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1) !important;
 }
 .form-control:focus {
   border-color: #007bff;

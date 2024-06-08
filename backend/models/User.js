@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
   state: { type: String },
   profession: { type: String },
   image: { type: String }, 
-  bio: { type: String }
+  bio: { type: String },
+  
 });
 
 // Pre-save hook to hash password

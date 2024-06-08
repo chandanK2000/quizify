@@ -1,0 +1,53 @@
+.container {
+  max-width: 600px;
+  padding: 20px;
+}
+.biography{
+  float: right;
+  margin: 4px 0px;
+  color: #495057;
+  font-size: 16px;
+}
+
+.form-label {
+  margin-bottom: 0.5rem;
+}
+
+.form-select {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+}
+
+.profile-image {
+  position: relative;
+}
+.profile-image .fi-camera-icon {
+  visibility: visible;
+}
+
+.profile-image:hover .fi-camera-icon {
+  color: white;
+}
+
+.fi-camera-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  transition: visibility 0.3s ease-in-out;
+}

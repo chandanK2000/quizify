@@ -38,3 +38,19 @@
   -ms-user-select: none;
   user-select: none;
 } 
+
+.modal-header .btn-close{
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 14px;
+  height: 28px;
+  width: 28px;
+  background-color: #dee3e7;
+  border-radius: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: black;
+  cursor: pointer;
+}
