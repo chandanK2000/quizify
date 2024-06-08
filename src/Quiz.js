@@ -84,6 +84,12 @@ const Quiz = ({ subjectName, quizSet }) => {
     setQuestions(updatedQuestions);
   };
 
+  useEffect(() => {
+    if (questions.length > 0) {
+      setSelectedOption(questions[currentQuestionIndex].selectedOption || '');
+    }
+  }, [currentQuestionIndex, questions]);
+
   const handlePreviousQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
