@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiCamera, FiEdit, FiUser } from 'react-icons/fi';
+import { FiCamera, FiEdit } from 'react-icons/fi';
 import "./editProfileForm.css"
 import { toast } from 'react-toastify';
 import { Button } from '@mui/material';

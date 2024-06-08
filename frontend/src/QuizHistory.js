@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import "./QuizHistory.css";
 import { toast } from 'react-toastify';
+import LoadingOverlay from './LoadingOverlay';
 
 const QuizHistory = ({ userId }) => {
   const { subjectName, quizSet } = useParams();
@@ -35,7 +36,7 @@ const QuizHistory = ({ userId }) => {
       }
     } catch (error) {
       // console.error('Error fetching quiz history:', error);
-      setError('No Available Date of This Set is As Of Now');
+      setError('No Available Data of This Set is As Of Now');
       setLoading(false);
     }
   };
@@ -68,7 +69,8 @@ const QuizHistory = ({ userId }) => {
 
       <div className="quiz-history-list">
         {loading ? (
-          <p>Loading...</p>
+          // <p>Loading...</p>
+          <LoadingOverlay/>
         ) : error ? (
           <p>{error}</p>
         ) : (

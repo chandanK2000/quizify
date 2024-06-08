@@ -3,6 +3,7 @@ import { FaAdjust, FaLanguage, FaExpand, FaBell, FaSignInAlt, FaUserPlus, FaCog,
 import { FiEdit } from 'react-icons/fi'; 
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
+import { MdQuiz } from 'react-icons/md'; // Importing the quiz icon
 
 import './Header.css';
 import { Modal } from 'react-bootstrap';
@@ -157,7 +158,9 @@ const Header = () => {
     <header className="navbar navbar-expand-lg py-3">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          Quizpp
+          {/* <img src="./siyaramsir.jpg" alt="logo" height="100px" width="100px"/> */}
+          <span><MdQuiz className='quizicons' /> Quizify</span>
+
         </Link>
         <button
           className="navbar-toggler"
@@ -319,16 +322,7 @@ const Header = () => {
 
 
             </li>
-            {/* <li>
-              <form className="form-inline m-2 my-lg-0 header">
-                <input
-                  className="form-control mr-sm-2"
-                  type="search"
-                  placeholder="Search here ....🔍"
-                  aria-label="Search"
-                />
-              </form>
-            </li> */}
+          
           </ul>
         </div>
       </div>

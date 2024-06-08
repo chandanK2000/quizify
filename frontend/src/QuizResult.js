@@ -191,3 +191,5 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
 };
 
 export default QuizResult;
+
+// !C29jA5vHPW!CR -

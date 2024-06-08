@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-import { Modal } from 'bootstrap'; // Import Bootstrap Modal component
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { Modal } from 'bootstrap'; 
 
 const CustomModal = () => {
-  const modalRef = useRef(null); // Reference to the modal element
+  const modalRef = useRef(null); 
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -11,9 +11,9 @@ const CustomModal = () => {
         const modal = new Modal(modalRef.current);
         modal.show(); // Show the modal
       }
-    }, 10000); // Show modal after 10 seconds
+    }, 40000); 
 
-    return () => clearTimeout(timer); // Clear the timer when component unmounts
+    return () => clearTimeout(timer); 
   }, []);
 
   return (

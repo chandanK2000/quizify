@@ -10,6 +10,7 @@ const Loginform = ({ onRegisterLinkClick }) => {
   const [mobile, setMobile] = useState('');
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
+  const [loading, setLoading] = useState(false); // New loading state
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -47,22 +48,27 @@ const Loginform = ({ onRegisterLinkClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when form is submitted
 
     // Basic validation
     if (loginMethod === 'email') {
       if (!email.trim()) {
+        setLoading(false); // Reset loading state if validation fails
         return toast.error('Email is required');
       }
 
       if (!password.trim()) {
+        setLoading(false); // Reset loading state if validation fails
         return toast.error('Password is required');
       }
     } else if (loginMethod === 'mobile') {
       if (!mobile.trim()) {
+        setLoading(false); // Reset loading state if validation fails
         return toast.error('Mobile number is required');
       }
 
       if (!otp.trim()) {
+        setLoading(false); // Reset loading state if validation fails
         return toast.error('OTP is required');
       }
     }
@@ -90,7 +96,7 @@ const Loginform = ({ onRegisterLinkClick }) => {
         // alert(userData.name);
         // alert(userData.userId);
         // alert(userData.token);
-         window.location.reload();// to reload the page
+        window.location.reload();// to reload the page
         sessionStorage.setItem('userData', JSON.stringify(userData));
 
         // Clear the form fields
@@ -102,13 +108,16 @@ const Loginform = ({ onRegisterLinkClick }) => {
           setOtp('');
           setOtpSent(false);
         }
+        setLoading(false); // Reset loading state after successful login
         return toast.success(`${userData.name} logged in successfully`);
       } else {
         const data = await response.json();
+        setLoading(false); // Reset loading state after login fails
         return toast.error(data.message || 'Login failed');
       }
     } catch (error) {
       console.error('Login error:', error);
+      setLoading(false); // Reset loading state if an error occurs during login
       toast.error('An error occurred during login');
     }
   };
@@ -186,7 +195,9 @@ const Loginform = ({ onRegisterLinkClick }) => {
           </>
         )}
         <div className='text-center'>
-          <button type="submit" className="btn btn-primary mx-2" disabled={loginMethod === 'mobile' && !otp.trim()}>Login</button>
+          <button type="submit" className={`btn btn-primary mx-2 ${loading ? 'disabled' : ''}`} disabled={loginMethod === 'mobile' && !otp.trim()}>
+            {loading ? <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> : 'Login'}
+          </button>
         </div>
       </form>
     </div>

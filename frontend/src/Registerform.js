@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineMail, AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
+import {FaUserPlus} from 'react-icons/fa';
+
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 const Registerform = ({ onSuccessfulRegistration }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -19,16 +20,17 @@ const Registerform = ({ onSuccessfulRegistration }) => {
     confirmPassword: '',
     mobile: ''
   });
+  const [loading, setLoading] = useState(false); // New loading state
 
   const handleChange = (e) => {
+    const { id, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.id]: e.target.value
+      [id]: value
     });
-
     setErrors({
       ...errors,
-      [e.target.id]: ''
+      [id]: ''
     });
   };
 
@@ -38,29 +40,28 @@ const Registerform = ({ onSuccessfulRegistration }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when form is submitted
 
+    // Basic validation
     const newErrors = {};
-
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     }
-
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     }
-
     if (!formData.password.trim()) {
       newErrors.password = 'Password is required';
     }
-
     if (!formData.confirmPassword.trim()) {
       newErrors.confirmPassword = 'Confirm Password is required';
     } else if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match';
     }
-
     if (!formData.mobile.trim()) {
       newErrors.mobile = 'Mobile is required';
+    } else if (!/^[6-9]\d{9}$/.test(formData.mobile.trim())) {
+      newErrors.mobile = 'Mobile should start with 6 and be 10 digits long';
     }
 
     setErrors(newErrors);
@@ -94,7 +95,11 @@ const Registerform = ({ onSuccessfulRegistration }) => {
         onSuccessfulRegistration();
       } catch (error) {
         console.error('Registration error:', error);
+      } finally {
+        setLoading(false); 
       }
+    } else {
+      setLoading(false); 
     }
   };
 
@@ -155,12 +160,14 @@ const Registerform = ({ onSuccessfulRegistration }) => {
             Mobile
           </label>
           <div className="input-group">
-            <input type="tel" className="form-control" id="mobile" value={formData.mobile} onChange={handleChange} />
+            <input type="number" className="form-control" id="mobile" value={formData.mobile} onChange={handleChange} maxLength="10" />
           </div>
           {errors.mobile && <div className="text-danger">{errors.mobile}</div>}
         </div>
         <div className='text-center'>
-          <button type="submit" className="btn btn-primary">Register</button>
+          <button type="submit" className={`btn btn-primary ${loading ? 'disabled' : ''}`}>
+            <FaUserPlus/> Register {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+          </button>
         </div>
       </form>
     </div>

@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Modal from 'react-modal';
 import { Button } from '@mui/material';
+import LoadingOverlay from './LoadingOverlay'; // Import your LoadingOverlay component
 
 const Quiz = ({ subjectName, quizSet }) => {
   const [questions, setQuestions] = useState([]);
@@ -16,39 +17,11 @@ const Quiz = ({ subjectName, quizSet }) => {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
   const [agreeChecked, setAgreeChecked] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [timer, setTimer] = useState(60); // 1 minute in seconds
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
-
   const notificationAudio = new Audio('http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg');
-
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const response = await fetch(`http://localhost:4000/api/questions/${subjectName}/set${quizSet}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch questions');
-        }
-        const data = await response.json();
-        console.log(data);
-        setQuestions(data);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-        // Handle error fetching questions
-      }
-    };
-
-    fetchQuestions();
-  }, [subjectName, quizSet]);
-
-  useEffect(() => {
-    // Set the selected option when loading a question
-    if (questions.length > 0) {
-      setSelectedOption(questions[currentQuestionIndex]?.selectedOption || '');
-    }
-  }, [currentQuestionIndex, questions]);
 
   useEffect(() => {
     // Check if the user is logged in when the component mounts
@@ -71,6 +44,37 @@ const Quiz = ({ subjectName, quizSet }) => {
     // Clear interval on component unmount or when quiz is completed
     return () => clearInterval(interval);
   }, [quizStarted, timer]);
+
+  const fetchQuestions = async () => {
+    try {
+      setLoading(true); // Set loading to true before fetching questions
+      const response = await fetch(`http://localhost:4000/api/questions/${subjectName}/set${quizSet}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch questions');
+      }
+      const data = await response.json();
+      setQuestions(data);
+      setLoading(false); // Set loading to false after questions are fetched
+    } catch (error) {
+      console.error(error);
+      // Handle error fetching questions
+      setLoading(false); // Ensure loading is set to false even if there's an error
+    }
+  };
+
+  const startQuiz = () => {
+    if (agreeChecked) {
+      if (isLoggedIn) {
+        fetchQuestions(); // Start fetching questions when quiz is started
+        setQuizStarted(true);
+      } else {
+        toast("Please log in to start the quiz.");
+        // Navigate to login page or show login modal
+      }
+    } else {
+      alert("Please agree to the terms and conditions before starting the quiz.");
+    }
+  };
 
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
@@ -103,7 +107,7 @@ const Quiz = ({ subjectName, quizSet }) => {
       setScore(finalScore);
       setQuizCompleted(true);
       toast.success('Quiz completed successfully!');
-      notificationAudio.play(); 
+      notificationAudio.play();
       setTimeout(() => {
         notificationAudio.pause();
       }, 3000);
@@ -119,19 +123,6 @@ const Quiz = ({ subjectName, quizSet }) => {
     setQuizCompleted(false);
     setQuizStarted(true);
     setTimer(60); // Reset timer to 1 minute
-  };
-
-  const startQuiz = () => {
-    if (agreeChecked) {
-      if (isLoggedIn) {
-        setQuizStarted(true);
-      } else {
-        toast("Please log in to start the quiz.");
-        // Navigate to login page or show login modal
-      }
-    } else {
-      alert("Please agree to the terms and conditions before starting the quiz.");
-    }
   };
 
   const handleAgreeChange = () => {
@@ -157,6 +148,7 @@ const Quiz = ({ subjectName, quizSet }) => {
 
   return (
     <div className='main_containers'>
+      {loading && <LoadingOverlay />} {/* Show loading overlay when loading is true */}
       {!quizStarted && !loading && (
         <div className="quizcontainers">
           <div className="instructions">
@@ -168,8 +160,6 @@ const Quiz = ({ subjectName, quizSet }) => {
                 <li>Make sure to review your answers before submitting the quiz.</li>
                 <li>After submission, a toast message will prompt you to confirm if you want to submit the test.</li>
                 <li>If you confirm, the test will be submitted, and a success message will be displayed along with a notification bell sound.</li>
-                
-
               </ul>
               <ul>
                 <li>The timer starts once you begin the quiz. Each quiz set consists of 10 questions, and you have 5 minutes to complete it.</li>
@@ -243,7 +233,7 @@ const Quiz = ({ subjectName, quizSet }) => {
           ))}
         </div>
       </Modal>
-    
+
     </div>
   );
 };
