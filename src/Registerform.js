@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineMail, AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
-import {FaUserPlus} from 'react-icons/fa';
+import { FaUserPlus } from 'react-icons/fa';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -68,110 +68,110 @@ const Registerform = ({ onSuccessfulRegistration }) => {
 
     if (Object.keys(newErrors).length === 0) {
       try {
-        const response = await fetch('http://localhost:4000/api/users/register', {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/register`, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
-          },
+          'Content-Type': 'application/json'
+        },
           body: JSON.stringify(formData)
         });
 
-        if (!response.ok) {
-          const data = await response.json();
-          throw new Error(data.message || 'Registration failed');
-        }
-
-        setFormData({
-          name: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-          mobile: ''
-        });
-
-        toast.success(`${formData.name} Registered successfully!`);
-
-        // Call the callback function to switch to the login form
-        onSuccessfulRegistration();
-      } catch (error) {
-        console.error('Registration error:', error);
-      } finally {
-        setLoading(false); 
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || 'Registration failed');
       }
-    } else {
-      setLoading(false); 
+
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        mobile: ''
+      });
+
+      toast.success(`${formData.name} Registered successfully!`);
+
+      // Call the callback function to switch to the login form
+      onSuccessfulRegistration();
+    } catch (error) {
+      console.error('Registration error:', error);
+    } finally {
+      setLoading(false);
     }
+  } else {
+    setLoading(false);
+}
   };
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            <AiOutlineUser /> Name
-          </label>
-          <div className="input-group">
-            <input type="text" className="form-control" id="name" value={formData.name} onChange={handleChange} />
-          </div>
-          {errors.name && <div className="text-danger">{errors.name}</div>}
+return (
+  <div>
+    <form onSubmit={handleSubmit}>
+      <div className="mb-3">
+        <label htmlFor="name" className="form-label">
+          <AiOutlineUser /> Name
+        </label>
+        <div className="input-group">
+          <input type="text" className="form-control" id="name" value={formData.name} onChange={handleChange} />
         </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            <AiOutlineMail /> Email address
-          </label>
-          <div className="input-group">
-            <input type="email" className="form-control" id="email" value={formData.email} onChange={handleChange} />
-          </div>
-          {errors.email && <div className="text-danger">{errors.email}</div>}
+        {errors.name && <div className="text-danger">{errors.name}</div>}
+      </div>
+      <div className="mb-3">
+        <label htmlFor="email" className="form-label">
+          <AiOutlineMail /> Email address
+        </label>
+        <div className="input-group">
+          <input type="email" className="form-control" id="email" value={formData.email} onChange={handleChange} />
         </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            <AiOutlineLock /> Password
-          </label>
-          <div className="input-group">
-            <input
-              type={showPassword ? 'text' : 'password'}
-              className="form-control"
-              id="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              onClick={togglePasswordVisibility}
-            >
-              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-            </button>
-          </div>
-          {errors.password && <div className="text-danger">{errors.password}</div>}
-        </div>
-        <div className="mb-3">
-          <label htmlFor="confirmPassword" className="form-label">
-            Confirm Password
-          </label>
-          <div className="input-group">
-            <input type="password" className="form-control" id="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
-          </div>
-          {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
-        </div>
-        <div className="mb-3">
-          <label htmlFor="mobile" className="form-label">
-            Mobile
-          </label>
-          <div className="input-group">
-            <input type="number" className="form-control" id="mobile" value={formData.mobile} onChange={handleChange} maxLength="10" />
-          </div>
-          {errors.mobile && <div className="text-danger">{errors.mobile}</div>}
-        </div>
-        <div className='text-center'>
-          <button type="submit" className={`btn btn-primary ${loading ? 'disabled' : ''}`}>
-            <FaUserPlus/> Register {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+        {errors.email && <div className="text-danger">{errors.email}</div>}
+      </div>
+      <div className="mb-3">
+        <label htmlFor="password" className="form-label">
+          <AiOutlineLock /> Password
+        </label>
+        <div className="input-group">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            className="form-control"
+            id="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <button
+            className="btn btn-outline-secondary"
+            type="button"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
           </button>
         </div>
-      </form>
-    </div>
-  );
+        {errors.password && <div className="text-danger">{errors.password}</div>}
+      </div>
+      <div className="mb-3">
+        <label htmlFor="confirmPassword" className="form-label">
+          Confirm Password
+        </label>
+        <div className="input-group">
+          <input type="password" className="form-control" id="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
+        </div>
+        {errors.confirmPassword && <div className="text-danger">{errors.confirmPassword}</div>}
+      </div>
+      <div className="mb-3">
+        <label htmlFor="mobile" className="form-label">
+          Mobile
+        </label>
+        <div className="input-group">
+          <input type="number" className="form-control" id="mobile" value={formData.mobile} onChange={handleChange} maxLength="10" />
+        </div>
+        {errors.mobile && <div className="text-danger">{errors.mobile}</div>}
+      </div>
+      <div className='text-center'>
+        <button type="submit" className={`btn btn-primary ${loading ? 'disabled' : ''}`}>
+          <FaUserPlus /> Register {loading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>}
+        </button>
+      </div>
+    </form>
+  </div>
+);
 }
 
 export default Registerform;

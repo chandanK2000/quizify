@@ -25,7 +25,7 @@ const QuizHistory = ({ userId }) => {
     try {
       // Check if userData is available
       if (userData) {
-        const response = await fetch(`http://localhost:4000/api/quizResults/${subjectName}/${quizSet}?userId=${userData.userId}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/quizResults/${subjectName}/${quizSet}?userId=${userData.userId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch quiz history data');
         }
@@ -47,7 +47,7 @@ const QuizHistory = ({ userId }) => {
 
   const deleteQuizResult = async (id) => {
     try {
-      const response = await fetch(`http://localhost:4000/api/quizResults?userId=${userData.userId}&subjectName=${subjectName}&quizSet=${quizSet}&_id=${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/quizResults?userId=${userData.userId}&subjectName=${subjectName}&quizSet=${quizSet}&_id=${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) {

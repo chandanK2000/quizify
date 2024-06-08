@@ -27,11 +27,11 @@ const EditProfileForm = () => {
     const storedUserData = sessionStorage.getItem('userData');
     if (storedUserData) {
       const parsedUserData = JSON.parse(storedUserData);
-      fetch(`http://localhost:4000/api/users/${parsedUserData.userId}`)
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/${parsedUserData.userId}`)
         .then(response => response.json())
         .then(data => {
           setUserData(data);
-          setImagePreview(`http://localhost:4000/${data.image}`); // Set initial image preview
+          setImagePreview(`${process.env.REACT_APP_BACKEND_URL}/${data.image}`); // Set initial image preview
         })
         .catch(error => console.error('Error fetching user data:', error));
     }
@@ -70,7 +70,7 @@ const EditProfileForm = () => {
         }
       }
 
-      const response = await fetch(`http://localhost:4000/api/users/${userData._id}`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/users/${userData._id}`, {
         method: 'PUT',
         body: formData,
       });

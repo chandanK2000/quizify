@@ -116,7 +116,7 @@ const QuizResult = ({ score, totalQuestions, questions, restartQuiz }) => {
     };
 
     try {
-      const response = await fetch('http://localhost:4000/api/quizResults', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/quizResults`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -13,7 +13,7 @@ const InterviewPage = () => {
   useEffect(() => {
     const fetchInterviewData = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/interviews/${subject}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/interviews/${subject}`);
         if (!response.ok) {
           throw new Error('Failed to fetch interview data');
         }

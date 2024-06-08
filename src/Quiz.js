@@ -48,7 +48,7 @@ const Quiz = ({ subjectName, quizSet }) => {
   const fetchQuestions = async () => {
     try {
       setLoading(true); // Set loading to true before fetching questions
-      const response = await fetch(`http://localhost:4000/api/questions/${subjectName}/set${quizSet}`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/questions/${subjectName}/set${quizSet}`);
       if (!response.ok) {
         throw new Error('Failed to fetch questions');
       }
