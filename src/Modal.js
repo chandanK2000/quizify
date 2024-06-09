@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import { Modal } from 'bootstrap'; 
-
+import './modals.css';
 const CustomModal = () => {
   const modalRef = useRef(null); 
 
@@ -27,7 +27,7 @@ const CustomModal = () => {
           <div className="modal-body">
             <div className="row">
               <div className='col-lg-12 text-center demomodalbody'>
-                <img className='images rounded-circle border' src="./siyaramsir.jpg" alt="demoteacher" height="100px" width="100px"/>
+                <img className='images' src="./siyaramsir.jpg" alt="demoteacher" height="100px" width="100px"/>
               </div>
             </div>
             <div className='row'>

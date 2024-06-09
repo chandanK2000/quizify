@@ -1,0 +1,9 @@
+.images {
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.images.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
