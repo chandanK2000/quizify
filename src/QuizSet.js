@@ -101,8 +101,8 @@ const QuizSet = () => {
   // Define quiz sets for each subject
   const quizSets = {
     html: [1, 2, 3, 4, 5, 6, 7],
-    css: [1, 2, 3],
-    javascript: [1, 2, 3],
+    css: [1, 2, 3,4,5],
+    javascript: [1, 2, 3,4,5],
     // react: [1, 2, 3],
     // bootstrap: [1, 2, 3],
   };
