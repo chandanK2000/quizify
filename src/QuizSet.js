@@ -100,7 +100,7 @@ const QuizSet = () => {
 
   // Define quiz sets for each subject
   const quizSets = {
-    html: [1, 2, 3, 4, 5, 6, 7],
+    html: [1, 2, 3, 4, 5],
     css: [1, 2, 3,4,5],
     javascript: [1, 2, 3,4,5],
     // react: [1, 2, 3],
