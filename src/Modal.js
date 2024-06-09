@@ -27,7 +27,7 @@ const CustomModal = () => {
           <div className="modal-body">
             <div className="row">
               <div className='col-lg-12 text-center demomodalbody'>
-                <img className='images' src="./siyaramsir.jpg" alt="demoteacher"/>
+                <img className='images rounded-circle border' src="./siyaramsir.jpg" alt="demoteacher" height="100px" width="100px"/>
               </div>
             </div>
             <div className='row'>
